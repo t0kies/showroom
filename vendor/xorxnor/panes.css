@@ -1,0 +1,120 @@
+/* Panes and type: windows, frames, shadows, commands, links, tags */
+@layer components {
+  /* ── panes ────────────────────────────────────────────────── */
+
+  .tui-window {
+    --tui-surface: var(--background0);
+    position: relative;
+    border: 2px solid var(--box-border-color);
+    background-color: var(--tui-surface);
+  }
+  .tui-window[data-title]::before {
+    content: '[ ' attr(data-title) ' ]';
+    position: absolute;
+    top: 0;
+    left: 1ch;
+    z-index: 2;
+    translate: 0 -50%;
+    padding: 0 0.5ch;
+    background-color: var(--tui-surface);
+    color: var(--foreground2);
+    font-size: 0.8125rem;
+    line-height: 1;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .tui-frame {
+    border: 2px solid var(--box-border-color);
+    overflow: hidden;
+  }
+
+  .tui-interactive {
+    transition: border-color 80ms steps(1);
+  }
+  .tui-interactive:hover,
+  .tui-interactive:focus-within {
+    border-color: var(--link);
+  }
+  .tui-interactive:hover[data-title]::before,
+  .tui-interactive:focus-within[data-title]::before {
+    color: var(--link);
+  }
+
+  /* The drop shadow is a layer at z-index -1, so it always sits behind every
+     pane and menu, never over a neighbour's text (a box-shadow would paint
+     over a parent menu when a flyout opens beside it). Needs a positioned
+     element that doesn't start its own stacking context. */
+  [data-effects='true'] .tui-shadow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    translate: 1ch 0.5lh;
+    background-color: color-mix(in oklab, var(--foreground0) 20%, transparent);
+    pointer-events: none;
+  }
+
+  /* ── type ─────────────────────────────────────────────────── */
+
+  .tui-cmd {
+    color: var(--foreground2);
+    font-size: 0.875rem;
+  }
+  .tui-cmd::before {
+    content: '$ ';
+    color: var(--ansi-green);
+  }
+
+  .tui-rule {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+  }
+  .tui-rule::after {
+    content: '';
+    flex: 1;
+    min-width: 2ch;
+    border-top: 2px solid var(--box-border-color);
+  }
+
+  .tui-link {
+    color: var(--foreground1);
+    text-decoration: none;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+  .tui-link::before {
+    content: '[';
+    color: var(--foreground2);
+  }
+  .tui-link::after {
+    content: ']';
+    color: var(--foreground2);
+  }
+  .tui-link:hover,
+  .tui-link[aria-current='page'] {
+    background-color: var(--foreground0);
+    color: var(--background0);
+  }
+  .tui-link:hover::before,
+  .tui-link:hover::after,
+  .tui-link[aria-current='page']::before,
+  .tui-link[aria-current='page']::after {
+    color: inherit;
+  }
+
+  .tui-tag {
+    color: var(--foreground1);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+  .tui-tag::before {
+    content: '[';
+    color: var(--foreground2);
+  }
+  .tui-tag::after {
+    content: ']';
+    color: var(--foreground2);
+  }
+}

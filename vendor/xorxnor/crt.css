@@ -1,0 +1,60 @@
+/* CRT hero text (heros/CrtText.tsx), in the High Impact and full-bleed heroes:
+   red/green fringes after D3nn7/crt-css and a phosphor glow; now and then a
+   glitch. The glitch is one smooth drift with no change in brightness, kept
+   rare by the component (a few per page at most), so it never flashes. */
+
+/* Animatable, so the glitch can ease the fringes apart and back */
+@property --crt-split {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@layer components {
+  .crt-text {
+    position: relative;
+  }
+
+  @media screen {
+    [data-effects='true'] .crt-text {
+      --crt-split: 0.06rem;
+      --crt-glow: color-mix(in oklab, var(--foreground0) 30%, transparent);
+      text-shadow:
+        calc(var(--crt-split) * 0.5) 0 0.04rem rgb(234 54 175 / 0.45),
+        calc(var(--crt-split) * -0.8) 0 0.04rem rgb(117 250 105 / 0.45),
+        0 0 0.4rem var(--crt-glow);
+    }
+    [data-effects='true'] .crt-text h1 {
+      text-shadow:
+        var(--crt-split) 0 0.06rem #ea36af,
+        calc(var(--crt-split) * -1.6) 0 0.06rem #75fa69,
+        0 0 0.6rem var(--crt-glow);
+    }
+
+    /* A pane's border and drop shadow fringe like the text */
+    [data-effects='true'] .crt-text .tui-window,
+    [data-effects='true'] .crt-text .tui-shadow::after {
+      box-shadow:
+        calc(var(--crt-split) * 0.6) 0 0 rgb(234 54 175 / 0.5),
+        calc(var(--crt-split) * -0.9) 0 0 rgb(117 250 105 / 0.5);
+    }
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    [data-effects='true'] .crt-text[data-glitch] {
+      animation: crt-glitch 0.7s ease-in-out;
+    }
+  }
+}
+
+/* Slip left as the fringes spread, overshoot right, settle */
+@keyframes crt-glitch {
+  30% {
+    --crt-split: 0.22rem;
+    transform: translateX(-0.12rem) skewX(-2deg);
+  }
+  60% {
+    --crt-split: 0.14rem;
+    transform: translateX(0.08rem) skewX(1deg);
+  }
+}

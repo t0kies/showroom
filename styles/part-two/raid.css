@@ -1,0 +1,5 @@
+/* showroom: 16: stools, where the stream is always dark. TK · xoxn · 2026 */
+.stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--xn-bg); border: 2px solid var(--xn-border); }
+.stage .alert-box { --space-s: 0.5lh; color: var(--xn-fg); }
+.stage .alert-media img { image-rendering: pixelated; }
+.raid { display: grid; gap: 1lh; padding: 1.5lh 2ch; }

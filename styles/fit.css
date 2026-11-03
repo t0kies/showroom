@@ -1,0 +1,43 @@
+/* showroom: fit at any width. Nothing pokes past its column or off the page.
+   TK · xoxn · 2026 */
+
+/* the drop shadow is drawn outside the box, so the box leaves it room */
+.tui-shadow { margin-inline-end: 1ch; margin-block-end: 0.5lh; }
+
+/* a long file name wraps before it pushes the table past its window */
+.tui-ls td, .tui-ls th { overflow-wrap: anywhere; }
+
+@media (max-width: 30rem) {
+  /* ooo's board: on a phone the name column gives up six cells */
+  .ooo .game-board-row {
+    grid-template-columns:
+      var(--cw) calc(var(--cw) * 2) calc(var(--cw) * 10) calc(var(--cw) * 5) calc(var(--cw) * 8)
+      calc(var(--cw) * 5) calc(var(--cw) * 4);
+  }
+}
+
+/* offload bay's kiosk: a glyph from outside the font gets exactly its terminal cells */
+.kiosk .w1, .kiosk .w2 { display: inline-block; text-align: center; }
+.kiosk .w1 { width: var(--cw); }
+.kiosk .w2 { width: calc(var(--cw) * 2); }
+
+/* the life update: the cat beside the limerick, stacked on a phone */
+.post-card { flex-direction: row; }
+.post-card > .photo.cat { flex: 0 0 30%; aspect-ratio: auto; display: grid; place-items: center; border-bottom: 0; border-right: 2px solid var(--line); padding: 2lh 2ch; }
+.post-card .logo { height: 8lh; }
+.limerick { margin: 0; white-space: pre-wrap; font: inherit; color: var(--xn-accent); }
+@media (max-width: 40rem) {
+  .post-card { flex-direction: column; }
+  .post-card > .photo.cat { border-right: 0; border-bottom: 2px solid var(--line); }
+}
+
+/* the back cover sits closer to the last headline */
+.back { margin-top: 3lh; }
+
+/* 08: the code and the round sit where a photo would, inside the card's top */
+.project-card .photo.snippet { display: grid; align-content: center; padding: 1lh calc(var(--cw) * 2); overflow: hidden; }
+.project-card .photo.snippet pre { margin: 0; }
+.project-card .photo.mini-round { display: grid; align-content: center; justify-items: center; gap: 1lh; padding: 1lh 2ch; }
+
+/* a long path in a credit wraps before it pushes the card wider */
+.credit { overflow-wrap: anywhere; }

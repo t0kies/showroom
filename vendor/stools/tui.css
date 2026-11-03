@@ -1,0 +1,404 @@
+/*
+ * The TUI kit — the same one xorxnor runs on: WebTUI
+ * (https://webtui.ironclad.sh) as the base, a terminal vocabulary on
+ * top. Every page loads this one file: control pages, the scene
+ * overlay, widget sources and the custom-widget sandbox. Colours come
+ * from tokens.css; nothing here hard-codes one.
+ *
+ * css/webtui/ is @webtui/css 0.1.10 (MIT), the dist files unmodified.
+ * There's no build step, so they're @import-ed from here. Paths are
+ * absolute: the sandbox loads this file into a srcdoc frame.
+ *
+ * WebTUI attributes, as xorxnor uses them:
+ *   is-="button"   opt-in: a bare <button> stays a plain text control
+ *                  variant-="accent | background2 | red"   size-="small"
+ *   is-="badge"    variant-="accent | live | attention | danger | background3"
+ *   is-="checkbox" is-="switch" is-="spinner"
+ *
+ * Kit classes:
+ *   .tui-window       framed pane; data-title="..." prints [ title ] on the top edge
+ *   .tui-interactive  pane that lights up on hover / keyboard focus
+ *   .tui-shadow       hard drop shadow — only for things that float above the page
+ *   .tui-cmd          "$ command" echo line above a page title
+ *   .tui-rule         heading followed by a rule to the end of the line
+ *   .tui-link         [bracketed] link that inverts on hover / when current
+ *   .tui-keybar       Midnight Commander style numbered key bar
+ *   .tui-statusline   vim style status line
+ *   .tui-mode         its mode label: NORMAL, INSERT, EDIT
+ *   .tui-outline      hard edge and drop shadow, for text over footage
+ *   .tui-numerals     broadcast clock figures (clock, timer)
+ */
+
+/* WebTUI's layers, then utilities last so they win over any WebTUI
+   default. Page stylesheets are unlayered and win over all of it. */
+@layer base, utils, components, utilities;
+
+@import url('tokens.css');
+@import url('webtui/base.css');
+@import url('webtui/utils/box.css');
+@import url('webtui/components/badge.css');
+@import url('webtui/components/button.css');
+@import url('webtui/components/checkbox.css');
+@import url('webtui/components/input.css');
+@import url('webtui/components/spinner.css');
+@import url('webtui/components/switch.css');
+@import url('webtui/components/textarea.css');
+
+/* ── WebTUI's tokens, from ours ──────────────────────────────── */
+
+:root {
+    --background0: var(--surface);
+    --background1: var(--surface-raised);
+    --background2: var(--surface-strong);
+    --background3: var(--line-faint);
+    --foreground0: var(--text);
+    --foreground1: var(--text-body);
+    --foreground2: var(--text-muted);
+    --box-border-color: var(--line);
+    --link: var(--action);
+
+    /* The outline filter (.tui-outline). A variable, so its em sizes
+       resolve on whatever uses it: the edge and drop scale with the text. */
+    --outline:
+        drop-shadow(0.06em 0 0 var(--shadow))
+        drop-shadow(-0.06em 0 0 var(--shadow))
+        drop-shadow(0 0.06em 0 var(--shadow))
+        drop-shadow(0 -0.06em 0 var(--shadow))
+        drop-shadow(0.12em 0.12em 0 var(--shadow));
+}
+
+/* ── base ────────────────────────────────────────────────────── */
+
+@layer base {
+    /* WebTUI gives buttons and inputs a display, which beats the UA's
+       [hidden] rule; the pages toggle .hidden all the time */
+    [hidden] {
+        display: none !important;
+    }
+
+    :root {
+        --font-family: var(--font);
+        --font-size: 16px;
+        --line-height: 1.4;
+        color: var(--text);
+    }
+
+    *,
+    ::before,
+    ::after {
+        border-color: var(--line);
+        border-radius: 0 !important;
+    }
+
+    html {
+        scrollbar-color: var(--text-muted) var(--surface-raised);
+    }
+
+    html,
+    body {
+        /* WebTUI's base sets break-all, which splits ordinary words */
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text);
+        font-size: unset;
+        font-weight: unset;
+    }
+
+    a { color: var(--link); }
+    code, kbd, pre, samp { font-family: inherit; }
+    strong { color: var(--text); font-weight: normal; }
+
+    ::selection {
+        background-color: var(--selection-bg);
+        color: var(--selection-text);
+    }
+
+    /* WebTUI has no select; drawn like its inputs */
+    select {
+        height: 1lh;
+        padding: 0 1ch;
+        border: 0;
+        background-color: var(--surface-raised);
+        color: var(--text);
+        font: inherit;
+    }
+
+    /* WebTUI draws checkboxes and switches in a pseudo-element one line tall */
+    input[type='checkbox'][is-~='checkbox'],
+    input[type='checkbox'][is-~='switch'] {
+        height: 1lh;
+        vertical-align: top;
+    }
+
+    /* WebTUI's base removes every outline; keyboard focus stays visible */
+    :focus-visible {
+        outline: var(--frame) solid var(--link);
+        outline-offset: var(--frame);
+    }
+}
+
+/* ── WebTUI adjustments ──────────────────────────────────────── */
+
+@layer components {
+    /* WebTUI styles every bare <button>. Keep that opt-in: only buttons
+       carrying a WebTUI attribute get the TUI look. revert-layer drops the
+       rest back to the base layer; the :not() chain out-ranks WebTUI's
+       most specific button selector. */
+    button:not([is-~='button']):not([variant-]):not([size-]):not([box-]) {
+        all: revert-layer;
+        cursor: pointer;
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        padding: 0;
+    }
+
+    [is-~='button'] {
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    a[is-~='button'] { text-decoration: none; }
+    /* Hover reads like focus: bold, underlined. No easing — a terminal
+       redraws, it doesn't fade. */
+    [is-~='button']:hover {
+        font-weight: 700;
+        text-decoration: underline;
+    }
+    /* Greyed out rather than struck through: "Saved" is a state, not a mistake */
+    [is-~='button']:disabled {
+        --mapped-primary: var(--surface-strong);
+        --mapped-secondary: var(--text-muted);
+        text-decoration: none;
+    }
+
+    [is-~='button'][variant-='accent'] {
+        --button-primary: var(--action);
+        --button-secondary: var(--action-text);
+    }
+    [is-~='button'][variant-='red'] {
+        --button-primary: var(--danger);
+        --button-secondary: var(--danger-text);
+    }
+
+    [is-~='badge'] {
+        font-size: var(--text-xs);
+        text-transform: lowercase;
+    }
+    /* Badges by meaning, not by hue */
+    [is-~='badge'][variant-='accent'] { --badge-color: var(--action); --badge-text: var(--action-text); }
+    [is-~='badge'][variant-='live'] { --badge-color: var(--live); --badge-text: var(--live-text); }
+    [is-~='badge'][variant-='attention'] { --badge-color: var(--attention); --badge-text: var(--attention-text); }
+    [is-~='badge'][variant-='danger'] { --badge-color: var(--danger); --badge-text: var(--danger-text); }
+
+    input[type='checkbox'][is-~='switch'] {
+        --switch-track-color: var(--surface-strong);
+    }
+    /* WebTUI sets the thumb colour on the ::after itself, so match its selector */
+    input[type='checkbox'][is-~='switch']:checked::after {
+        --switch-thumb-color: var(--live);
+    }
+}
+
+/* ── kit ─────────────────────────────────────────────────────── */
+
+@layer components {
+    .tui-window {
+        --tui-surface: var(--surface);
+        position: relative;
+        border: var(--frame) solid var(--line);
+        background-color: var(--tui-surface);
+    }
+    .tui-window[data-title]::before {
+        content: '[ ' attr(data-title) ' ]';
+        position: absolute;
+        top: 0;
+        left: 1ch;
+        z-index: 2;
+        translate: 0 -50%;
+        padding: 0 0.5ch;
+        background-color: var(--tui-surface);
+        color: var(--text-muted);
+        font-size: var(--text-xs);
+        line-height: 1;
+        text-transform: lowercase;
+        white-space: nowrap;
+    }
+
+    .tui-interactive:hover,
+    .tui-interactive:focus-within {
+        border-color: var(--link);
+    }
+    .tui-interactive:hover[data-title]::before,
+    .tui-interactive:focus-within[data-title]::before {
+        color: var(--link);
+    }
+
+    /* A hard drop shadow, offset one character cell. A box-shadow rather
+       than a z-index:-1 layer: the floating things that use it (toast,
+       panels) are fixed and stack on their own, which would put such a
+       layer on top of their background. */
+    .tui-shadow {
+        box-shadow: 1ch 0.5lh 0 var(--shadow);
+    }
+
+    .tui-cmd {
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+    }
+    .tui-cmd::before {
+        content: '$ ';
+        color: var(--live);
+    }
+
+    .tui-rule {
+        display: flex;
+        align-items: center;
+        gap: 1ch;
+    }
+    .tui-rule::after {
+        content: '';
+        flex: 1;
+        min-width: var(--col-m);
+        border-top: var(--frame) solid var(--line);
+    }
+
+    .tui-link {
+        color: var(--text-body);
+        text-decoration: none;
+        text-transform: lowercase;
+        white-space: nowrap;
+    }
+    .tui-link::before { content: '['; color: var(--text-muted); }
+    .tui-link::after { content: ']'; color: var(--text-muted); }
+    .tui-link:hover,
+    .tui-link[aria-current='page'] {
+        background-color: var(--text);
+        color: var(--surface);
+    }
+    .tui-link:hover::before,
+    .tui-link:hover::after,
+    .tui-link[aria-current='page']::before,
+    .tui-link[aria-current='page']::after {
+        color: inherit;
+    }
+
+    /* Fixed columns, so a wrapped row lines up under the one above */
+    .tui-keybar {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--field), 1fr));
+        gap: var(--space-xs) var(--col-s);
+        font-size: var(--text-sm);
+    }
+    .tui-keybar a {
+        display: flex;
+        color: var(--text-body);
+        text-decoration: none;
+        text-transform: lowercase;
+    }
+    .tui-keybar a > kbd {
+        padding: 0 0.5ch;
+        background-color: var(--text);
+        color: var(--surface);
+    }
+    .tui-keybar a > span {
+        flex: 1;
+        padding: 0 1ch 0 0.5ch;
+        background-color: var(--surface-strong);
+    }
+    .tui-keybar a:hover > span,
+    .tui-keybar a[aria-current='page'] > span {
+        background-color: var(--action);
+        color: var(--action-text);
+    }
+
+    .tui-statusline {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        background-color: var(--surface-strong);
+        color: var(--text);
+        font-size: var(--text-xs);
+        white-space: nowrap;
+    }
+    .tui-statusline > * { padding: var(--space-xs) var(--col-s); }
+
+    /* The mode, in inverse like vim's: what the keys do right now */
+    .tui-mode {
+        /* The longest mode word (6 letters) plus a column each side */
+        flex: 0 0 calc(6ch + 2 * var(--col-m));
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--action);
+        color: var(--action-text);
+        text-transform: uppercase;
+    }
+    .tui-mode[data-mode='insert'] {
+        background-color: var(--attention);
+        color: var(--attention-text);
+    }
+    .tui-mode[data-mode='edit'] {
+        background-color: var(--live);
+        color: var(--live-text);
+    }
+
+
+    /* Outlined text, for anything shown over footage: a hard edge all
+       round, then a drop shadow of the outlined shape. Drawn with filters,
+       which work on the finished text: a text-shadow shadows the bare
+       letter, so it came out smaller than the text it belonged to.
+       Four one-way shadows in turn build the edge (each also shadows the
+       last, so the corners fill in); the fifth is the drop. */
+    .tui-outline { filter: var(--outline); }
+
+    /* Broadcast numerals, after NHK's on-air clock: heavy figures, legible
+       over any footage without a box behind them (with .tui-outline).
+       Departure Mono has one weight, so the weight is the figure struck
+       twice, a little apart — on each figure, so the smaller seconds get
+       a stroke their own size. */
+    .tui-numerals {
+        --numeral-ink: var(--text);
+        display: inline-flex;
+        align-items: baseline;
+        color: var(--numeral-ink);
+        line-height: 1;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+    }
+    .tui-numerals > * { text-shadow: 0.06em 0 0 var(--numeral-ink); }
+    /* The colon sits tight between its figures */
+    .tui-numerals .sep { margin-inline: -0.12em; }
+    /* Seconds and AM/PM ride smaller beside the hours and minutes, the
+       way a station clock keeps the minute the thing you read */
+    .tui-numerals .minor { margin-left: 0.2em; font-size: 0.5em; }
+    .tui-numerals .unit { margin-left: 0.3em; font-size: 0.4em; letter-spacing: 0.06em; }
+    /* Stopped, the figures dim; the outline stays */
+    .tui-numerals.is-stopped { --numeral-ink: var(--text-muted); }
+}
+
+/* ── utilities ───────────────────────────────────────────────── */
+
+@layer utilities {
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .muted { color: var(--text-muted); }
+    .is-live { color: var(--live); }
+    .is-attention { color: var(--attention); }
+    .is-danger { color: var(--danger); }
+    .text-link { color: var(--link); }
+
+    /* Touch devices have no number keys to press */
+    @media not ((hover: hover) and (min-width: 40rem)) {
+        .desk-only { display: none !important; }
+    }
+}

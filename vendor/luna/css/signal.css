@@ -1,0 +1,76 @@
+/* signal: luna's own skin, in the @xoxn/skins format, for colour-vision
+   deficiency (Bloomberg ships the like for its Terminal). Red/green become
+   orange/blue, the axis deuteranopia and protanopia keep, and selection
+   moves off blue: − / error, + / ready and selected stay ≥ 40 ΔE (CIE
+   L*u*v) apart, and from the ink, under normal, deuteranopic and
+   protanopic vision (Machado 2009), every ink ≥ 6.5:1 on the glass
+   (MIL-STD-1472F 5.2.1.5.6.5, 5.2.4.2.2.1). Follows the system light /
+   dark like xorxnor. */
+:root[data-skin="signal"] {
+  --xn-glass-hi: #f4f1e8;
+  --xn-glass: #f4f1e8;
+  --xn-glass-lo: #e2e0d8;
+  --xn-ink: #101418;
+  --xn-on: #f4f1e8;
+  --xn-accent: #00579a;
+  --xn-r: #993300;
+  --xn-g: #00579a;
+  --xn-b: #0000dd;
+  --xn-c: #00579a;
+  --xn-m: #0000dd;
+  --xn-y: #993300;
+  --xn-o: #993300;
+  --xn-p: #0000dd;
+  --xn-shadow: color-mix(in srgb, var(--xn-ink) 35%, transparent);
+  --xn-ghost: color-mix(in srgb, var(--xn-ink) 10%, transparent);
+  --xn-dot: color-mix(in srgb, var(--xn-ink) 6%, transparent);
+  --xn-sheen: color-mix(in srgb, white 9%, transparent);
+  --xn-mode: light;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="signal"]:not([data-theme="light"]):not([data-mode="light"]) {
+    --xn-glass-hi: #222528;
+    --xn-glass: #101418;
+    --xn-glass-lo: #101418;
+    --xn-ink: #ece8de;
+    --xn-on: #101418;
+    --xn-accent: #6cb8ff;
+    --xn-r: #dd8844;
+    --xn-g: #6cb8ff;
+    --xn-b: #ffff00;
+    --xn-c: #6cb8ff;
+    --xn-m: #ffff00;
+    --xn-y: #dd8844;
+    --xn-o: #dd8844;
+    --xn-p: #ffff00;
+    --xn-shadow: #000000aa;
+    --xn-ghost: color-mix(in srgb, var(--xn-ink) 10%, transparent);
+    --xn-dot: color-mix(in srgb, var(--xn-ink) 6%, transparent);
+    --xn-sheen: color-mix(in srgb, white 9%, transparent);
+    --xn-mode: dark;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="signal"][data-mode="dark"], :root[data-skin="signal"][data-theme="dark"] {
+  --xn-glass-hi: #222528;
+  --xn-glass: #101418;
+  --xn-glass-lo: #101418;
+  --xn-ink: #ece8de;
+  --xn-on: #101418;
+  --xn-accent: #6cb8ff;
+  --xn-r: #dd8844;
+  --xn-g: #6cb8ff;
+  --xn-b: #ffff00;
+  --xn-c: #6cb8ff;
+  --xn-m: #ffff00;
+  --xn-y: #dd8844;
+  --xn-o: #dd8844;
+  --xn-p: #ffff00;
+  --xn-shadow: #000000aa;
+  --xn-ghost: color-mix(in srgb, var(--xn-ink) 10%, transparent);
+  --xn-dot: color-mix(in srgb, var(--xn-ink) 6%, transparent);
+  --xn-sheen: color-mix(in srgb, white 9%, transparent);
+  --xn-mode: dark;
+  color-scheme: dark;
+}

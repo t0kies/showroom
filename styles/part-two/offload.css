@@ -1,0 +1,9 @@
+/* showroom: 09: offload bay's kiosk colors. TK · xoxn · 2026 */
+.kiosk { min-height: calc(11 * var(--lh)); }
+.k-title { color: var(--xn-accent); }
+.k-dim { color: var(--xn-fg2); }
+.k-ok { color: var(--xn-ok); }
+.k-info { color: var(--xn-b); }
+.k-warn { color: var(--xn-warn); }
+.k-err { color: var(--xn-err); }
+.kiosk-log { min-height: 9lh; margin: 0; padding: 1lh 2ch; white-space: pre-wrap; }

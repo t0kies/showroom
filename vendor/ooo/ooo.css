@@ -1,0 +1,782 @@
+/* ooo/frontend/styles/base/roles.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* Color roles, mixed from the active theme (themes/<name>.css). No other
+   stylesheet names a color.
+
+   A theme sets --c-glass, --c-ink, --c-shadow, --c-r, --c-g, --c-b and the
+   hues --c-y (amber), --c-o (warm), --c-c (cool), --c-p (pink). Optional:
+   --c-glass-hi, --c-glass-lo, --c-on (text on ink), --c-ghost, --c-dot.
+
+   R: wrong, error, destructive. G: right, selected. B: focus, active,
+   progress. Y: warning, time running low.
+   title: game name, headlines. heading: screen names, labels, table heads.
+   action: a screen's main button. key: keyboard hints. hp: hearts.
+   All text roles reach 4.5:1 contrast; ghost is for disabled marks only. */
+:scope {
+    --bg-hi: var(--c-glass-hi, var(--c-glass));
+    --bg: var(--c-glass);
+    --bg-lo: var(--c-glass-lo, var(--c-glass));
+    --bg-dot: var(--c-dot, color-mix(in srgb, var(--c-ink) 6%, transparent));
+    --glass: linear-gradient(180deg, var(--bg-hi), var(--bg) 45%, var(--bg-lo));
+
+    --ink: var(--c-ink);
+    --ink-on: var(--c-on, var(--c-glass));
+    --shadow: var(--c-shadow);
+
+    --R: var(--c-r);
+    --G: var(--c-g);
+    --B: var(--c-b);
+    --Y: var(--c-y, color-mix(in srgb, var(--c-r) 50%, var(--c-g)));
+
+    --title: var(--c-o, var(--c-ink));
+    --heading: var(--c-c, var(--c-ink));
+    --action: var(--c-o, var(--c-ink));
+    --key: var(--c-y, var(--dim));
+    --hp: var(--c-p, var(--c-g));
+
+    --ghost: var(--c-ghost, color-mix(in srgb, var(--c-r) 11%, transparent));
+
+    --dim: color-mix(in srgb, var(--c-ink) 80%, transparent);
+    --dim-shadow: color-mix(in srgb, var(--c-shadow) 55%, transparent);
+}
+
+}
+
+/* ooo/frontend/styles/base/reset.css, inside @scope (.ooo) */
+@scope (.ooo) {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* biome-ignore lint/complexity/noImportantStyles: corners are never rounded */
+    border-radius: 0 !important;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* so a click never starts a text selection */
+button,
+label {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+::selection {
+    background: var(--ink);
+    color: var(--ink-on);
+    text-shadow: none;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+    font: inherit;
+}
+
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    text-shadow: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+input {
+    padding: 0;
+    min-width: 0;
+}
+::placeholder {
+    color: var(--dim);
+    text-shadow: var(--px) var(--px) 0 var(--dim-shadow);
+    opacity: 1;
+}
+:focus {
+    outline: none;
+}
+
+}
+
+/* ooo/frontend/styles/base/buttons.css, inside @scope (.ooo) */
+@scope (.ooo) {
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+    text-transform: uppercase;
+}
+/* hover inverts the cell; keyboard focus and pressing light it in B */
+button:hover:not(:disabled) {
+    background-color: var(--ink);
+    color: var(--ink-on);
+    text-shadow: none;
+}
+button:focus-visible,
+button:active:not(:disabled) {
+    background-color: var(--B);
+    color: var(--ink-on);
+    text-shadow: none;
+    outline: none;
+}
+button:disabled {
+    color: var(--ghost);
+    text-shadow: none;
+    cursor: not-allowed;
+}
+
+/* anti-aliased glyph edges leave seams between █ cells; a sliver of shadow
+   in the glyph's own color closes them */
+.blocks,
+button.blocks:is(:hover, :focus-visible, :active, :disabled) {
+    text-shadow:
+        calc(var(--px) / 4) 0 currentColor,
+        calc(var(--px) / -4) 0 currentColor;
+}
+
+}
+
+/* ooo/frontend/styles/base/text.css, inside @scope (.ooo) */
+@scope (.ooo) {
+.dim {
+    color: var(--dim);
+    text-shadow: var(--px) var(--px) 0 var(--dim-shadow);
+}
+
+/* a control's key hint, lowercase; hidden on touch screens */
+.key {
+    color: var(--key);
+    text-transform: none;
+}
+button:is(:hover, :focus-visible, :active, :disabled) .key {
+    color: inherit;
+    text-shadow: none;
+}
+@media (hover: none) {
+    .key {
+        display: none;
+    }
+}
+
+.mark-ok {
+    color: var(--G);
+}
+.mark-err {
+    color: var(--R);
+}
+.mark-busy {
+    color: var(--B);
+}
+.mark-hp {
+    color: var(--hp);
+}
+
+@keyframes flash {
+    50% {
+        opacity: 0.35;
+    }
+}
+
+}
+
+/* ooo/frontend/styles/components/bars.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* The top row (logo, HUD or screen name, way out) and the bottom row
+   (settings, credit). Home shows only the bottom row, a game only the top. */
+.topbar,
+.bottombar {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--cw) * 2);
+    height: var(--lh);
+    white-space: nowrap;
+}
+/* the top row doesn't clip, so the −♥ over the hearts can rise out of it */
+.bottombar {
+    overflow: hidden;
+    justify-content: space-between;
+}
+body[data-frame="home"] .topbar,
+body:not([data-frame="home"]) .bottombar {
+    display: none;
+}
+
+.brand {
+    text-transform: lowercase;
+    display: flex;
+    align-items: center;
+    height: var(--lh);
+    flex: none;
+}
+.screen-title {
+    color: var(--heading);
+    text-transform: uppercase;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.screen-title:empty {
+    display: none;
+}
+.screen-hud {
+    flex: 1;
+    min-width: 0;
+}
+.screen-end {
+    flex: none;
+    margin-left: auto;
+}
+.screen-end:empty {
+    display: none;
+}
+/* the first esc of two was pressed */
+.screen-end .is-armed {
+    color: var(--R);
+}
+
+}
+
+/* ooo/frontend/styles/components/settings.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* the settings in the bottom row: sound, theme, fullscreen */
+.settings {
+    display: flex;
+    gap: calc(var(--cw) * 2);
+}
+.setting-value {
+    color: var(--heading);
+}
+button:is(:hover, :focus-visible, :active) .setting-value {
+    color: inherit;
+}
+#sound-toggle[aria-pressed="false"] .setting-value,
+#fullscreen-toggle[aria-pressed="false"] .setting-value {
+    color: var(--dim);
+}
+#fullscreen-toggle[hidden] {
+    display: none;
+}
+#fullscreen-toggle .symbol {
+    color: var(--key);
+}
+#fullscreen-toggle:is(:hover, :focus-visible, :active) .symbol {
+    color: inherit;
+}
+
+/* phones keep the bottom row in a game too (settings, fullscreen, way out) */
+@media (pointer: coarse) and (hover: none) {
+    body:not([data-frame="home"]) .bottombar {
+        display: flex;
+    }
+    body:not([data-frame="home"]) .credit {
+        display: none;
+    }
+    .bottombar > .screen-end {
+        margin-left: 0;
+    }
+    .credit-words {
+        display: none;
+    }
+}
+/* upright phones: no room for the name beside the HUD */
+@media (pointer: coarse) and (hover: none) and (max-width: 599px) {
+    .topbar > .brand {
+        display: none;
+    }
+}
+
+}
+
+/* ooo/frontend/styles/components/logo.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* typed logo: three rows of █ on home, the site name in the top row */
+.logo {
+    white-space: pre;
+}
+/* the odd O out (scripts/ui/logo.js) */
+.logo-o.is-odd {
+    color: var(--logo-odd);
+}
+.logo-small {
+    color: var(--title);
+    text-transform: lowercase;
+}
+.logo-big {
+    width: max-content;
+    font-size: var(--fs2);
+    line-height: calc(var(--lh) * 2);
+    /* the █ seam fix (base/buttons.css) plus the --fs2 drop shadow */
+    text-shadow:
+        calc(var(--px) / 2) 0 currentColor,
+        calc(var(--px) / -2) 0 currentColor,
+        calc(var(--px) * 2) calc(var(--px) * 2) 0 var(--shadow);
+}
+
+}
+
+/* ooo/frontend/styles/components/hud.css, inside @scope (.ooo) */
+@scope (.ooo) {
+.game-arena {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--lh);
+    min-height: 0;
+}
+
+/* level, health, score on one line, health in the middle */
+.game-hud {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: calc(var(--cw) * 2);
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    white-space: pre;
+}
+.game-hud-score {
+    justify-self: end;
+}
+
+/* a cat on an empty row (scripts/ui/cat.js) */
+.cat {
+    position: absolute;
+    color: var(--dim);
+    white-space: pre;
+    pointer-events: none;
+    user-select: none;
+}
+
+}
+
+/* ooo/frontend/styles/components/health.css, inside @scope (.ooo) */
+@scope (.ooo) {
+.game-health {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cw);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+.game-health-label {
+    color: var(--heading);
+}
+.game-health-pips {
+    display: inline-flex;
+    align-items: center;
+}
+.game-health-pip {
+    display: inline-block;
+    color: var(--dim);
+    transition:
+        color 140ms steps(2),
+        opacity 140ms steps(2);
+}
+.game-health-pip.is-full {
+    color: var(--hp);
+}
+.game-health[data-low="true"] .game-health-pip.is-full {
+    color: var(--R);
+}
+.game-health-pip.is-lost {
+    animation: health-pip-break 420ms steps(3) both;
+}
+@keyframes health-pip-break {
+    0%,
+    66% {
+        color: var(--R);
+    }
+    100% {
+        color: var(--dim);
+    }
+}
+
+/* damage: the lost heart breaks in R and a −♥ rises one row and fades.
+   Drawn over the hearts, so nothing else moves. */
+.damage-hit .game-health-pip.is-lost {
+    position: relative;
+}
+.damage-hit .game-health-pip.is-lost::after {
+    content: "−♥";
+    content: "−♥" / "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: var(--z-raised);
+    color: var(--R);
+    transform: translateX(-50%);
+    animation: damage-rise 520ms steps(4) both;
+}
+@keyframes damage-rise {
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, calc(var(--lh) * -1));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .game-health-pip,
+    .damage-hit .game-health-pip.is-lost::after {
+        animation: none;
+        transition: none;
+    }
+}
+
+}
+
+/* ooo/frontend/styles/components/clock.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* Match clock: a bar and the seconds. B, then Y in the last 15 s, R in the
+   last 5. scripts/match/clock.js adds .is-beat each second: the number
+   blinks, and in the last 5 s the bar too. */
+.game-clock {
+    --clock-cells: 24;
+    justify-self: end;
+    display: flex;
+    gap: calc(var(--cw) * 2);
+    white-space: pre;
+    font-variant-numeric: tabular-nums;
+}
+.game-clock-bar {
+    color: var(--B);
+}
+.game-clock[data-urgency="warn"] .game-clock-bar {
+    color: var(--Y);
+}
+.game-clock[data-urgency="danger"] .game-clock-bar {
+    color: var(--R);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .game-clock.is-beat .game-hud-timer,
+    .game-clock.is-beat[data-urgency="danger"] .game-clock-bar {
+        animation: clock-beat 300ms steps(1) 1;
+    }
+}
+/* upright phones: half the top row */
+@media (pointer: coarse) and (hover: none) and (max-width: 599px) {
+    .game-clock {
+        --clock-cells: 12;
+    }
+}
+@keyframes clock-beat {
+    50% {
+        opacity: 0.35;
+    }
+}
+
+}
+
+/* ooo/frontend/styles/components/field.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* A label and an unboxed input. The cursor is a ▓ cell (scripts/lib/field.js):
+   blinking while typing, steady in an empty field, hidden otherwise.
+   .is-browsing (the home name field, focused but not editing) lights the
+   label like a focused button. */
+.field {
+    display: flex;
+    align-items: baseline;
+    gap: var(--cw);
+}
+.field[hidden] {
+    display: none;
+}
+.field-label {
+    color: var(--heading);
+    text-transform: uppercase;
+}
+.field-box {
+    position: relative;
+    display: inline-block;
+    width: calc(var(--cw) * var(--cells, 20));
+}
+.field-box input {
+    width: 100%;
+    caret-color: transparent;
+}
+.field-cursor {
+    position: absolute;
+    top: 0;
+    left: calc(var(--cw) * var(--at, 0));
+    color: var(--action);
+    pointer-events: none;
+    visibility: hidden;
+}
+.field-box[data-empty="true"] .field-cursor,
+.field:not(.is-browsing):focus-within .field-cursor {
+    visibility: visible;
+}
+.field:not(.is-browsing):focus-within .field-cursor {
+    animation: cursor-blink 1s steps(1) infinite;
+}
+@keyframes cursor-blink {
+    50% {
+        visibility: hidden;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .field:not(.is-browsing):focus-within .field-cursor {
+        animation: none;
+    }
+}
+.field.is-browsing:focus-within .field-label {
+    background-color: var(--B);
+    color: var(--ink-on);
+    text-shadow: none;
+}
+
+}
+
+/* ooo/frontend/styles/components/choices.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* The grid reaches one cell past each side so the swatches, not their
+   padding, line up with the top row. Leftover cells go to the sides. */
+.game-choices {
+    display: grid;
+    grid-template-columns: repeat(var(--per-row, 3), max-content);
+    /* gaps are as wide across as down (scripts/ui/choices.js) */
+    justify-content: center;
+    gap: var(--lh) calc(var(--cw) * 2);
+    width: calc(100% + var(--cw) * 2);
+    margin-left: calc(var(--cw) * -1);
+}
+/* touch screens have no key labels, so the swatch padding is the gap across */
+@media (hover: none) {
+    .game-choices {
+        column-gap: 0;
+    }
+}
+.round-column:has(> .game-choices) {
+    width: 100%;
+    margin-left: 0;
+}
+.round-column > .game-choices {
+    max-width: none;
+}
+.game-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: pre;
+    padding: 0 var(--cw);
+}
+.game-choice:disabled {
+    cursor: default;
+}
+/* Swatches aren't lit like buttons. Hover, focus, press and a pending pick
+   drop an ink shadow under the swatch; after the answer, G under the right
+   one and R under a wrong pick. Includes the seam fix (base/buttons.css). */
+.game-choices .game-choice:is(:hover, :focus-visible, :active, .is-picked) {
+    background: none;
+    color: inherit;
+}
+.game-choice:is(:is(:hover, :focus-visible, :active):not(:disabled), .is-picked, .is-right, .is-wrong) .blocks {
+    text-shadow:
+        calc(var(--px) / 4) 0 currentColor,
+        calc(var(--px) / -4) 0 currentColor,
+        calc(var(--cw) / 2) calc(var(--cw) / 2) 0 var(--mark, var(--ink));
+}
+.game-choice.is-right {
+    --mark: var(--G);
+}
+.game-choice.is-wrong {
+    --mark: var(--R);
+}
+/* the roster under the swatches spans the grid */
+.game-choices > :not(.game-choice) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+}
+
+/* ooo/frontend/styles/components/roster.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* players, one aligned row each: marker, name, status */
+.game-roster {
+    display: flex;
+    flex-direction: column;
+}
+.game-roster-player {
+    display: grid;
+    grid-template-columns: var(--cw) calc(var(--cw) * 22) auto auto;
+    column-gap: var(--cw);
+    white-space: pre;
+}
+.game-roster-marker {
+    color: var(--B);
+}
+.game-roster-marker.dim {
+    color: var(--dim);
+}
+.game-roster-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.game-roster-status {
+    font-variant-numeric: tabular-nums;
+}
+.game-roster-kick {
+    color: var(--R);
+}
+.game-roster-away {
+    display: inline;
+    color: var(--dim);
+}
+.game-invite-code {
+    letter-spacing: var(--cw);
+}
+.game-arena > .game-roster {
+    flex: none;
+}
+
+/* in a match: marker, a 12-cell name, a cell per starting heart, points */
+.game-choices .game-roster-player {
+    grid-template-columns: var(--cw) calc(var(--cw) * 12) calc(var(--cw) * var(--hearts, 10)) max-content;
+    justify-content: start;
+}
+/* two columns, filled top to bottom */
+.game-roster.is-split {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(var(--rows, 1), auto);
+    grid-auto-columns: max-content;
+    column-gap: calc(var(--cw) * 4);
+}
+
+}
+
+/* ooo/frontend/styles/components/board.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* match results: fixed cell columns, a score bar under each row */
+.game-board {
+    display: flex;
+    flex-direction: column;
+    font-variant-numeric: tabular-nums;
+}
+.game-board-row {
+    display: grid;
+    grid-template-columns:
+        var(--cw) calc(var(--cw) * 2) calc(var(--cw) * 16) calc(var(--cw) * 5) calc(var(--cw) * 8)
+        calc(var(--cw) * 5) calc(var(--cw) * 4);
+    column-gap: var(--cw);
+    white-space: pre;
+}
+.game-board-head {
+    color: var(--heading);
+    text-transform: uppercase;
+}
+.game-board-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.game-board-cell.is-num {
+    text-align: right;
+}
+.game-board-row[data-out="true"] {
+    color: var(--dim);
+}
+.game-board-bar {
+    color: var(--B);
+    white-space: pre;
+    padding-left: calc(var(--cw) * 6);
+    overflow: hidden;
+}
+
+}
+
+/* ooo/frontend/styles/components/home.css, inside @scope (.ooo) */
+@scope (.ooo) {
+/* Home: the logo over the menu, on fixed cells so notices, the best score or
+   the code field never move them. The block is the 22-cell logo, centred on
+   a whole cell; its 15 rows (logo 6, gap 1, menu 8) are centred in the top
+   two thirds of the card. The menu is 16 cells (2 for the ↲ gutter, 14 for
+   "Quick Practice"); extras run on to the right of a row. */
+.home-card {
+    container-type: size;
+}
+.home {
+    --home-left: max(0px, round(down, (100cqw - var(--cw) * 22) / 2, var(--cw)));
+    width: calc(var(--cw) * 22);
+    margin-left: var(--home-left);
+    /* at least one row, for the best score above the logo */
+    padding-top: max(var(--lh), round(down, (100cqh * 2 / 3 - var(--lh) * 15) / 2, var(--lh)));
+}
+.home > .logo-big {
+    margin-bottom: var(--lh);
+}
+
+/* the row above the logo, out of the flow; flashes 7 times on opening */
+.home-best {
+    position: absolute;
+    margin-top: calc(var(--lh) * -1);
+    color: var(--title);
+}
+.home-best.is-flashing {
+    animation: best-flash 500ms steps(1) 7;
+}
+@keyframes best-flash {
+    0% {
+        color: var(--dim);
+    }
+    50% {
+        color: var(--title);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-best.is-flashing {
+        animation: none;
+    }
+}
+
+/* practice and the name sit together, the online rows a row apart; 8 rows
+   even when the online rows are off */
+.home-menu {
+    min-height: calc(var(--lh) * 8);
+    padding-left: calc(var(--cw) * 3);
+}
+.home-row {
+    display: flex;
+    align-items: baseline;
+    height: var(--lh);
+    white-space: pre;
+}
+.home-row:not(:first-child, .home-name) {
+    margin-top: var(--lh);
+}
+.home-notices {
+    margin-top: var(--lh);
+    padding-left: calc(var(--cw) * 5);
+    width: calc(100cqw - var(--home-left));
+}
+.home-enter {
+    flex: none;
+    width: calc(var(--cw) * 2);
+    color: var(--key);
+}
+.home-practice,
+.home-menu-btn {
+    text-transform: none;
+    color: var(--action);
+    white-space: nowrap;
+}
+.home-menu-btn::before,
+.home-menu-btn::after {
+    content: "Ξ";
+    content: "Ξ" / "";
+}
+.home-menu-btn + .field {
+    margin-left: var(--cw);
+}
+
+}

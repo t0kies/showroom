@@ -1,0 +1,102 @@
+/* kloves/software/luna/web/css/text.css, inside @scope (.luna) */
+@scope (.luna) {
+/* Text roles: buttons, selection, cursor, the bars, unlit segments,
+   outlines and syntax. Colors come from palette.css. Loaded after
+   areas.css so these win over an area's gradient. */
+
+/* Clickable text */
+.b {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+.b:not(.bar):not(.tap):not(.dial):hover,
+.b:focus-visible,
+.inv {
+  background: var(--ink);
+  color: var(--ink-on);
+  text-shadow: none;
+  outline: none;
+}
+
+/* Input bars: drag or tap anywhere on one. G up, R down, the selected
+   one B. */
+.bar {
+  cursor: ns-resize;
+  touch-action: none;
+}
+.pos { color: var(--G); }
+.neg { color: var(--R); }
+.sel { color: var(--B); }
+
+/* The angle dial: drag anywhere on it to turn the needle */
+.dial {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* The big LCD value: tap to type */
+.tap { cursor: text; }
+
+/* Unlit LCD segments: no ink under them, no shadow */
+.gh {
+  color: var(--ghost);
+  text-shadow: none;
+  --ink-grad: linear-gradient(transparent, transparent);
+  filter: none;
+}
+.gt {
+  color: var(--ghost-alt);
+  text-shadow: none;
+}
+
+/* Picture outlines in text form: .e2 creases/inner edges, .e3 folds */
+.e2 { color: var(--R); }
+.e3 { color: var(--G); }
+
+/* Syntax (raw view): keyword, type, function/head, string, number,
+   attribute/key/preprocessor, comment, punctuation */
+.sk { color: var(--syn-keyword); }
+.st { color: var(--syn-type); }
+.sf { color: var(--syn-func); }
+.ss { color: var(--syn-string); }
+.sn { color: var(--syn-number); }
+.sa { color: var(--syn-attr); }
+.sc {
+  color: var(--syn-comment);
+  text-shadow: var(--px) var(--px) 0 var(--syn-comment-shadow);
+}
+.sp { color: var(--syn-punct); }
+
+/* Hints and labels */
+.dim {
+  color: var(--dim);
+  text-shadow: var(--px) var(--px) 0 var(--dim-shadow);
+}
+
+/* Waiting for you: the ready mark, GENERATE when there's something to do.
+   3 a second (MIL-STD-1472F 5.14.3.3.2: one flash rate, 3-5 Hz; WCAG 2.3.1:
+   no more than 3), 8 times, then it stays lit (screen.js flash keeps the
+   count across redraws, FLASH_MS there is this period). Only the text
+   cursor below blinks on, slower, the standard's second rate (≤ 2 Hz). */
+.flash { animation: flash 333ms steps(1) 8; }
+@keyframes flash {
+  50% { opacity: 0.35; }
+}
+
+/* Text cursor */
+.cur {
+  background: var(--ink);
+  color: var(--ink-on);
+  text-shadow: none;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { background: transparent; color: inherit; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cur, .flash { animation: none; }
+}
+
+}

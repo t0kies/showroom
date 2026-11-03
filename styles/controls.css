@@ -1,0 +1,3 @@
+/* showroom: controls that do their job: they look it. TK · xoxn · 2026 */
+img.logo { image-rendering: pixelated; }
+.project-card[data-go], .tui-keybar [data-view], #sheet-svg, #sheet-pdf { cursor: pointer; }

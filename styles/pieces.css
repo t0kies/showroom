@@ -1,0 +1,40 @@
+/* showroom: pieces that need a frame of their own, the headlines and the back cover. TK · xoxn · 2026 */
+.hand { display: grid; grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr)); align-content: start; gap: 0.75lh 2ch; padding: 1.5lh 2ch; }
+.hand label { display: grid; grid-template-columns: 9ch minmax(0, 1fr); align-items: baseline; }
+.hand input[type=text] { min-width: 0; }
+.hand .wide { grid-column: 1 / -1; }
+.hand label.wide { display: block; margin-top: 0.5lh; }
+
+.onair { display: grid; align-content: start; gap: 1lh; padding: 1.5lh 2ch; }
+.onair .tui-numerals { font-size: var(--big); }
+
+.project-card { display: flex; flex-direction: column; }
+.project-card > div:first-child { aspect-ratio: 16 / 10; border-bottom: 2px solid var(--line); }
+.project-card > div:last-child { flex: 1; display: grid; align-content: start; gap: 0.5lh; padding: 1lh 2ch; }
+.project-card h3 { font-size: var(--head); }
+
+#status { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+.news .grid { row-gap: 3lh; align-items: start; }
+.item { display: flex; flex-direction: column; gap: 0.75lh; min-width: 0; padding-top: 1lh; border-top: 1px solid var(--line); }
+.item h3 { font-size: var(--head); line-height: 1.3; }
+.item.lead h3 { font-size: var(--big); line-height: 1.1; }
+.item > p:not(.kicker):not(.credit) { max-width: 60ch; }
+.credit { color: var(--text-muted); font-size: var(--text-xs); }
+.item .cells.fine { padding: var(--lh) calc(var(--cw) * 2); }
+.oled { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 2ch; align-items: end; aspect-ratio: 4 / 1; padding: 1ch 2ch; border: 2px solid var(--line); font-family: "Departure Mono", monospace; font-size: 11px; line-height: 1.2; }
+.oled b { grid-row: 1; font-weight: normal; font-size: 44px; line-height: 1; }
+.oled span { grid-row: 2; grid-column: 1; }
+.oled i { grid-row: 1 / 3; grid-column: 2; align-self: center; justify-self: end; font-style: normal; white-space: pre; }
+.serial { margin: 0; padding: 0.5lh 1ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5lh 1ch; }
+.chips button { padding: 0.25lh 1ch; border: 2px solid; font: inherit; font-size: var(--text-xs); cursor: pointer; }
+.item.brief { padding-bottom: 1lh; border-bottom: 1px solid var(--line); }
+.brief b { font-weight: normal; color: var(--action); }
+
+.back { margin-top: 6lh; padding-top: 1.5lh; border-top: 2px solid var(--text); }
+.back .grid { margin-top: 1lh; align-items: start; }
+.marks { display: flex; flex-wrap: wrap; gap: 2ch; align-items: end; color: var(--action); }
+.marks svg { height: 5lh; width: auto; }
+.colophon { display: grid; align-content: start; gap: 1lh; }
+.sign { margin-top: 3lh; text-align: center; color: var(--text-muted); }

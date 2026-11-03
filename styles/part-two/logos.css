@@ -1,0 +1,6 @@
+/* showroom: each project's own logo: one-color ones take the accent, the rest keep theirs. TK · xoxn · 2026 */
+.logo { display: block; height: 1.5lh; width: auto; }
+.logo.tint { background: var(--action); }
+.logo-row { display: flex; align-items: center; min-height: 2lh; }
+.head .num { display: grid; align-content: start; gap: 1lh; }
+.head .logo { height: 33px; }

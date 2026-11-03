@@ -1,0 +1,112 @@
+/*
+ * Stools design tokens: the one place to restyle. Loaded by /css/tui.css,
+ * which every page — control pages, overlays, widgets — goes through.
+ *
+ * Raw colours live in the palette block and nowhere else. Everything a
+ * component reads names a job, and each colour has exactly one:
+ *
+ *   --action     gold: the thing to press, and where you are
+ *   --live       sage: on, connected, on air
+ *   --attention  slate: needs a look (advanced events, skipped subscriptions)
+ *   --danger     rust: destroys something, or went wrong
+ *
+ * Raw colours come from @xoxn/skins (css/xoxn/, vendored). The
+ * default is xorxnor, light/dark from the system; <html data-skin="twilight">
+ * brings back the old Twilight palette, data-mode="light|dark" pins a mode.
+ *
+ * Departure Mono is SIL OFL 1.1 (see README); bundled so it works offline.
+ */
+
+@import url('../xoxn/skins.css');
+@import url('../xoxn/roles.css');
+
+@font-face {
+    font-family: 'Departure Mono';
+    src: url('../fonts/DepartureMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+:root {
+    /* ── surfaces ────────────────────────────────────────── */
+    --surface: var(--xn-bg);                  /* the page */
+    --surface-raised: var(--xn-bg1);          /* fields, hovered rows, top bar */
+    --surface-strong: var(--xn-bg2);          /* secondary buttons, status line */
+    --surface-sunken: var(--xn-bg-lo);        /* code output, error logs */
+
+    /* ── text ────────────────────────────────────────────── */
+    --text: var(--xn-fg);                     /* titles, values you set */
+    --text-body: var(--xn-fg1);               /* running text */
+    --text-muted: var(--xn-fg2);              /* labels, hints, metadata */
+
+    /* ── lines ───────────────────────────────────────────── */
+    --line: var(--xn-border);                 /* window frames, rules */
+    --line-faint: var(--xn-bg3);              /* row separators */
+
+    /* ── intent ──────────────────────────────────────────── */
+    --action: var(--xn-accent);
+    --action-text: var(--xn-on);
+    --live: var(--xn-g);
+    --live-text: var(--xn-on);
+    --attention: var(--xn-c);                 /* the one cool colour, so it stands out */
+    --attention-text: var(--xn-on);
+    --danger: var(--xn-r);
+    --danger-text: var(--xn-on);
+    --selection-bg: var(--xn-bg3);
+    --selection-text: var(--xn-fg);
+
+    /* ── shape and type ──────────────────────────────────── */
+    --font: 'Departure Mono', ui-monospace, 'Courier New', monospace;
+    --shadow: #000000;                  /* hard drop shadows, numeral outlines */
+    --text-xs: 0.8125rem;
+    --text-sm: 0.875rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.75rem;
+    --text-display: 2.75rem;
+
+    /* ── layout ──────────────────────────────────────────── */
+    /* Everything is measured in character cells — ch across, lh down —
+       in steps that double. Media queries can't read variables, so the
+       two breakpoints are written out where used, and only these:
+         40rem  phone: rows stack, bars wrap, no number keys
+         64rem  narrow window: two-column pages become one */
+    --space-xs: 0.25lh;
+    --space-s: 0.5lh;
+    --space-m: 1lh;
+    --space-l: 2lh;
+    --space-xl: 4lh;
+    --col-s: 1ch;
+    --col-m: 2ch;
+    --col-l: 4ch;
+    --measure: 72ch;     /* longest line of running text */
+    --field: 16ch;       /* narrowest field worth typing in */
+    --panel: 44ch;       /* a side panel: the overlay inspector */
+    --page: 128ch;       /* widest page; wider windows get margins */
+    --frame: 2px;        /* every window frame and rule */
+    --hairline: 1px;     /* separators between rows */
+
+    /* ── legacy names ────────────────────────────────────── */
+    /* Custom widgets and scene CSS written against the old theme.css.
+       Read-only: set the semantic token to restyle. */
+    --st-bg: var(--surface);
+    --st-bg-deep: var(--surface-sunken);
+    --st-bg-raised: var(--surface-raised);
+    --st-bg-input: var(--surface-raised);
+    --st-border: var(--line-faint);
+    --st-border-dark: var(--surface-strong);
+    --st-text: var(--text);
+    --st-text-light: var(--text-body);
+    --st-text-muted: var(--text-muted);
+    --st-text-dim: var(--line);
+    --st-accent: var(--action);
+    --st-accent-text: var(--action-text);
+    --st-priority: var(--attention);
+    --st-success: var(--live);
+    --st-danger: var(--danger);
+    --st-font: var(--font);
+    --st-font-lg: 20px;
+}
+
+/* Pixel art (emotes, icons) stays crisp when scaled. */
+img.pixel, .pixel img { image-rendering: pixelated; }

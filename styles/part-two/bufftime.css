@@ -1,0 +1,8 @@
+/* showroom: 13: bufftime, its own CRT, ANSI colors and scanlines. TK · xoxn · 2026 */
+.buff { position: relative; display: grid; place-items: center; padding: 1lh 1ch; overflow-x: auto; background: var(--buff-bg, #0a0806); font-family: "Departure Mono", monospace; font-size: var(--fs); line-height: var(--lh); -webkit-font-smoothing: none; }
+.buff pre { margin: 0; font: inherit; white-space: pre; font-variant-ligatures: none; text-shadow: 0 0 calc(var(--px) * 4) color-mix(in srgb, currentColor 45%, transparent); --bg: var(--buff-bg, #0a0806); }
+.buff pre > div { height: var(--lh); }
+.buff .bold { text-shadow: 0 0 calc(var(--px) * 6) currentColor; }
+.buff .inv { color: var(--buff-bg, #0a0806); text-shadow: none; }
+.buff [data-a] { cursor: pointer; }
+.buff::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(transparent 0 var(--px), rgb(0 0 0 / 0.22) var(--px) calc(var(--px) * 2)); }

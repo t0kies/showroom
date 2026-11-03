@@ -1,0 +1,5 @@
+/* showroom: 15: the typing test. TK · xoxn · 2026 */
+.t-err { color: var(--xn-err); text-decoration: underline; }
+.t-at { color: var(--xn-bg); background: var(--xn-fg2); }
+.t-dim { color: var(--xn-fg2); }
+.typing { cursor: text; }

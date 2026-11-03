@@ -1,0 +1,50 @@
+/* showroom: the page under the pieces: cell sizes, the 12-column grid, captions and type. TK · xoxn · 2026 */
+/* Cells, from ooo's base/fonts.css: Departure Mono is crisp only at
+   multiples of 11px, a 7×14 cell at 11px. Display sizes keep to them. */
+:root, .fine {
+  --fs: 22px;
+  --fs2: calc(var(--fs) * 2);
+  --px: calc(var(--fs) / 11);
+  --cw: calc(var(--fs) * 7 / 11);
+  --lh: calc(var(--fs) * 14 / 11);
+  --z-raised: 1;
+}
+:root {
+  --cover: 88px;
+  --big: 44px;
+  --head: 22px;
+  --gutter: 4ch;
+}
+@media (max-width: 1399px) {
+  :root { --fs: 11px; --cover: 66px; }
+}
+@media (max-width: 64rem) {
+  :root { --cover: 44px; --big: 33px; --gutter: 2ch; }
+}
+/* luna's text fallback reads better at its smallest step */
+.fine { --fs: 11px; }
+
+body { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter) 6lh; }
+h1, h2, h3 { font-weight: normal; }
+
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2lh 3ch; align-items: stretch; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-6 { grid-column: span 6; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: 1 / -1; }
+@media (max-width: 64rem) {
+  .grid > * { grid-column: 1 / -1; }
+}
+
+figure { margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 0.5lh; }
+/* glass panels side by side match heights; framed windows keep theirs */
+figure > .cells { flex: 1; }
+figcaption { color: var(--text-muted); font-size: var(--text-xs); }
+.kicker { color: var(--text-muted); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.2ch; }
+.dek { max-width: 60ch; color: var(--text-body); }
+.pull cite { display: block; margin-top: 0.5lh; font-size: var(--text-xs); font-style: normal; color: var(--text-muted); }
+.dek.lead { max-width: 44ch; margin-bottom: 0.5lh; font-size: var(--head); line-height: 1.4; color: var(--text); }
+.row { display: flex; flex-wrap: wrap; gap: 0.5lh 2ch; align-items: center; }

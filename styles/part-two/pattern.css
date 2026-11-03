@@ -1,0 +1,12 @@
+/* showroom: 11 and 12: the reaction-diffusion canvas, the splash cat and the CRT heading. TK · xoxn · 2026 */
+.rd, .splash { display: block; width: 100%; image-rendering: pixelated; cursor: pointer; }
+.rd-cells { padding: 0; border: 2px solid var(--xn-border); }
+.rd-panel { display: grid; gap: 1lh; padding: 1lh 2ch; }
+.rd-nudge { display: flex; gap: 1ch; justify-content: flex-end; }
+.rd-note { margin: 0.5lh 0 0; padding: 0 1ch; font-size: var(--text-xs); }
+figure:has(.rd-panel) { gap: 0.5lh; }
+figure:has(.rd-panel) > .tui-window + .tui-window { margin-top: 1lh; }
+.rd:focus-visible, .splash:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }
+.crt-box { display: grid; gap: 2lh; align-content: center; height: 100%; padding: 2lh 3ch; background: var(--xn-bg-lo); cursor: pointer; }
+.crt-box h1 { margin: 0; font-size: var(--cover); line-height: 1; color: var(--xn-accent); }
+.crt-box .tui-window { padding: 1lh 2ch; }

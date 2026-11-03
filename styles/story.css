@@ -1,0 +1,39 @@
+/* showroom: a section's head, and the text-cell glass ooo and luna draw on. TK · xoxn · 2026 */
+.step { margin-top: 4lh; padding-top: 1.5lh; border-top: 2px solid var(--line); scroll-margin-top: 1lh; }
+.head { display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: 0 3ch; margin-bottom: 2lh; }
+.head .num { font-size: var(--big); line-height: 1; color: var(--action); }
+.head h2 { margin: 0.25lh 0 0.5lh; font-size: var(--head); }
+@media (max-width: 40rem) {
+  .head { grid-template-columns: minmax(0, 1fr); }
+}
+.pull { margin: 2lh 0 0; padding: 1lh 0 1lh calc((100% + 3ch) * 5 / 12); border-bottom: 2px solid var(--line); font-size: var(--big); line-height: 1.2; color: var(--action); }
+@media (max-width: 64rem) {
+  .pull { padding-left: 0; }
+}
+
+/* the text-cell side: ooo's scene (base/scene.css) and luna's screen (base.css): glass gradient, dot matrix, pixel drop shadow */
+.cells {
+  display: grid;
+  align-content: start;
+  gap: var(--lh);
+  padding: var(--lh) calc(var(--cw) * 2);
+  overflow-x: auto;
+  color: var(--ink);
+  font-family: "Departure Mono", monospace;
+  font-size: var(--fs);
+  line-height: var(--lh);
+  font-variant-ligatures: none;
+  text-shadow: var(--px) var(--px) 0 var(--shadow);
+  -webkit-font-smoothing: none;
+  background:
+    radial-gradient(circle, var(--bg-dot) 0 34%, transparent 40%) 0 0 / calc(var(--px) * 2) calc(var(--px) * 2),
+    linear-gradient(180deg, var(--bg-hi), var(--bg) 45%, var(--bg-lo));
+}
+.cells pre { margin: 0; font: inherit; white-space: pre; }
+.cells.fine { align-content: center; }
+
+/* luna's canvases (overlay.css): drawn in font pixels, scaled up */
+.luna canvas { display: block; width: 100%; image-rendering: pixelated; filter: drop-shadow(var(--px) var(--px) 0 var(--shadow)); }
+.luna canvas.view3d { filter: none; cursor: grab; touch-action: none; aspect-ratio: 16 / 9; }
+.luna canvas.view3d:active { cursor: grabbing; }
+.luna canvas.print { image-rendering: auto; }

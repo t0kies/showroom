@@ -1,0 +1,145 @@
+/* Listings, the header and its menu bar (Header/Menu.tsx) */
+@layer components {
+  /* ── listings ─────────────────────────────────────────────── */
+
+  .tui-ls {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .tui-ls td,
+  .tui-ls th {
+    padding: 0.15lh 1ch;
+    text-align: left;
+    vertical-align: baseline;
+  }
+  .tui-ls th {
+    color: var(--foreground2);
+    font-weight: normal;
+    border-bottom: 2px solid var(--box-border-color);
+  }
+  .tui-ls tbody tr:hover {
+    background-color: var(--background1);
+  }
+  .tui-ls a {
+    color: var(--foreground0);
+    text-decoration: none;
+  }
+  .tui-ls tr:hover a {
+    color: var(--link);
+  }
+
+  /* ── header ──────────────────────────────────────────────── */
+
+  .tui-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 40;
+    border-bottom: 2px solid var(--box-border-color);
+    background-color: var(--background0);
+  }
+  /* desk: shown only when summoned, and it simply appears, like a terminal
+     window (visibility also keeps the hidden links out of the tab order) */
+  @media (hover: hover) and (min-width: 48rem) {
+    .tui-header:not([data-open]):not(:focus-within) {
+      visibility: hidden;
+    }
+  }
+
+  /* ── menu bar (header), up to three levels (Header/Menu.tsx) ── */
+
+  .tui-menubar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0 1ch;
+    font-size: 0.9375rem;
+  }
+  .tui-menubar li {
+    position: relative;
+    list-style: none;
+  }
+  .tui-menubar a {
+    display: flex;
+    gap: 1ch;
+    padding: 0 1ch;
+    color: var(--foreground1);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .tui-menubar > li > a {
+    text-transform: lowercase;
+  }
+  .tui-menubar a[aria-current='page'] {
+    color: var(--link);
+  }
+  /* The open item and the hovered or focused row print in inverse video */
+  .tui-menubar li[data-open] > a,
+  .tui-menubar a:hover,
+  .tui-menubar a:focus-visible {
+    background-color: var(--foreground0);
+    color: var(--background0);
+    outline: none;
+  }
+  .tui-menubar > li[data-submenu] > a::after {
+    content: '▾';
+    color: var(--foreground2);
+  }
+  .tui-menubar li[data-open] > a::after,
+  .tui-menubar a:hover::after,
+  .tui-menubar a:focus-visible::after {
+    color: inherit;
+  }
+
+  /* A menu drops down from its item and reads left to right; Menu.tsx nudges
+     it left only as far as the window needs */
+  .tui-menu {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: max-content;
+    min-width: 24ch;
+    max-width: 44ch;
+    padding: 0.25lh 0;
+    border: 2px solid var(--box-border-color);
+    background-color: var(--background0);
+  }
+  .tui-menu a > .truncate {
+    min-width: 0;
+  }
+  /* A two-cell gutter on the left: + on rows with a branch, .. once it's
+     unfolded, blank otherwise so every label lines up */
+  .tui-menu > li > a::before {
+    content: '';
+    flex: 0 0 2ch;
+    color: var(--foreground2);
+  }
+  .tui-menu > li[data-submenu] > a::before {
+    content: '+';
+  }
+  .tui-menu > li[data-submenu][data-open] > a::before {
+    content: '..';
+  }
+  .tui-menu > li[data-open] > a::before,
+  .tui-menu > li > a:hover::before,
+  .tui-menu > li > a:focus-visible::before {
+    color: inherit;
+  }
+  /* The third level unfolds inline, drawn like `tree` */
+  .tui-menu-branch {
+    margin: 0;
+    padding: 0;
+  }
+  /* Hangs under the parent's label: the gutter (2ch) plus the gap (1ch) */
+  .tui-menu-branch > li > a::before {
+    content: '├─';
+    padding-left: 3ch;
+    color: var(--foreground2);
+  }
+  .tui-menu-branch > li:last-child > a::before {
+    content: '└─';
+  }
+  .tui-menu-branch a:hover::before,
+  .tui-menu-branch a:focus-visible::before {
+    color: inherit;
+  }
+}

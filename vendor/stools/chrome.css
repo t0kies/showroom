@@ -1,0 +1,79 @@
+/* stools/overlay/public/css/chrome.css */
+/* ── toast ───────────────────────────────────────────────────── */
+
+#toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--chrome-bottom) + var(--space-m));
+    z-index: 50;
+    translate: -50% 0;
+    max-width: min(90vw, var(--measure));
+    padding: var(--space-s) var(--col-m);
+    color: var(--text);
+}
+/* Its title ([ stools ] or [ error ]) rides the edge like any window's */
+#toast.error { border-color: var(--danger); color: var(--danger); }
+#toast.error::before { color: var(--danger); }
+
+/* ── dialog ──────────────────────────────────────────────────── */
+
+dialog.ask {
+    margin: auto;
+    width: min(90vw, var(--measure));
+    padding: var(--space-m) var(--col-m);
+    color: var(--text-body);
+}
+dialog.ask::backdrop { background: color-mix(in oklab, var(--surface) 70%, transparent); }
+dialog.ask p { margin: 0 0 var(--space-s); }
+dialog.ask input { width: 100%; }
+dialog.ask .buttons { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--col-s); margin-top: var(--space-m); }
+dialog.ask .copyable { overflow-wrap: anywhere; user-select: all; }
+
+
+/* stools/overlay/public/css/overlay.css */
+/* ── alert box (<stools-alert-box>) ──────────────────────────── */
+
+/* Text, media (image/gif/svg/video) and sound each render only when
+   the alert has them; any combination works. Sizes follow the box
+   (js/overlay/alert-box.js). */
+.alert-box {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-s);
+    color: var(--text);
+    text-align: center;
+    overflow: hidden;
+    user-select: none;
+}
+.alert-box.active { display: flex; }
+
+/* Entrance animations — one-shot, chosen per effect ("animation") */
+.alert-box.active.anim-pop { animation: alert-pop 420ms cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+.alert-box.active.anim-fade { animation: alert-fade 600ms ease both; }
+.alert-box.active.anim-slide { animation: alert-slide 460ms cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+@keyframes alert-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes alert-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes alert-slide { from { transform: translateY(-1lh); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.alert-box .alert-media { display: none; max-width: 100%; }
+.alert-box .alert-media.visible { display: block; }
+.alert-box .alert-media img,
+.alert-box .alert-media video {
+    display: block;
+    /* height: auto keeps the media's own shape, so it never distorts */
+    width: var(--media-width);
+    height: auto;
+    max-width: 100%;
+}
+
+.alert-box .alert-text {
+    display: none;
+    font-size: var(--text-size);
+    /* Outlined (tui.css), readable on any game footage */
+    filter: var(--outline);
+}
+.alert-box .alert-text.visible { display: block; }
+

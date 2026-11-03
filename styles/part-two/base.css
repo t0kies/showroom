@@ -1,0 +1,21 @@
+/* showroom: part two: its title, the placeholders, and glass that holds its screen in the middle. TK · xoxn · 2026 */
+:root { --chrome-bottom: 2lh; } /* the status line; stools' toast sits on it */
+.contents ol { grid-template-rows: repeat(9, auto); }
+.span-9 { grid-column: span 9; }
+@media (max-width: 64rem) {
+  .grid > .span-9 { grid-column: 1 / -1; }
+}
+
+.part { margin-top: 6lh; padding: 2lh 0; border-block: 2px solid var(--text); }
+.part-title { margin: 0.5lh 0 1lh; font-size: var(--big); line-height: 1.1; color: var(--action); }
+.placeholder { max-width: 60ch; padding: 0.5lh 1ch; border: 1px dashed var(--line); color: var(--text-muted); font-size: var(--text-xs); }
+.head .muted { font-size: var(--text-xs); }
+.board { margin-top: 2lh; align-items: stretch; }
+.board-note { display: flex; flex-direction: column; justify-content: flex-end; gap: 1lh; }
+.board-note .pull { margin: 0; padding: 0 0 1lh; }
+
+/* glass that's taller than what's on it holds it in the middle, not the top-left corner */
+figure > .cells { align-content: center; }
+.cells:not(.luna) > pre { justify-self: center; }
+/* stools' dialog is modal; something on the page makes it absolute, and then it opens at the top */
+dialog.ask { position: fixed; inset: 0; }

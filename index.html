@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en" data-skin="xorxnor" data-effects="true">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>showroom · things I make · xorxnor</title>
+<meta name="description" content="xorxnor showroom, pamphlet no. 01. kloves from six finger measurements to the website, then the rest of my projects and the lab.">
+<meta name="author" content="TK">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://t0kies.github.io/showroom/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xorxnor">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="xorxnor showroom">
+<meta property="og:description" content="kloves from six finger measurements to the website, then the rest of my projects and the lab. Every piece runs on its own project's code.">
+<meta property="og:url" content="https://t0kies.github.io/showroom/">
+<meta property="og:image" content="https://t0kies.github.io/showroom/samples/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="the XN mark and showroom in xorxnor dark">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="the XN mark and showroom in xorxnor dark">
+<!-- for search engines: who the page is about; build/stamp.mjs keeps dateModified -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "ProfilePage", "name": "showroom", "url": "https://t0kies.github.io/showroom/",
+ "description": "xorxnor showroom, pamphlet no. 01. kloves from six finger measurements to the website, then the rest of my projects and the lab.",
+ "inLanguage": "en", "image": "https://t0kies.github.io/showroom/samples/og.png", "dateModified": "2026-11-03",
+ "mainEntity": {"@type": "Person", "name": "TK", "alternateName": "xorxnor", "url": "https://t0kies.github.io/showroom/", "sameAs": ["https://github.com/t0kies"]}}
+</script>
+<link rel="stylesheet" href="vendor/stools/tui.css">
+<link rel="stylesheet" href="vendor/xoxn/adapters/webtui.css">
+<link rel="stylesheet" href="vendor/xoxn/adapters/luna.css">
+<link rel="stylesheet" href="vendor/luna/css/signal.css">
+<link rel="stylesheet" href="vendor/luna/css/palette.css">
+<link rel="stylesheet" href="vendor/luna/css/text.css">
+<link rel="stylesheet" href="vendor/xorxnor/panes.css">
+<link rel="stylesheet" href="vendor/xorxnor/prose.css">
+<link rel="stylesheet" href="vendor/xorxnor/header.css">
+<link rel="stylesheet" href="vendor/ooo/ooo.css">
+<link rel="stylesheet" href="vendor/stools/chrome.css">
+<link rel="stylesheet" href="vendor/xorxnor/crt.css">
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/cover.css">
+<link rel="stylesheet" href="styles/story.css">
+<link rel="stylesheet" href="styles/pieces.css">
+<link rel="stylesheet" href="styles/part-two/base.css">
+<link rel="stylesheet" href="styles/part-two/offload.css">
+<link rel="stylesheet" href="styles/part-two/warehouse.css">
+<link rel="stylesheet" href="styles/part-two/pattern.css">
+<link rel="stylesheet" href="styles/part-two/bufftime.css">
+<link rel="stylesheet" href="styles/part-two/grunts.css">
+<link rel="stylesheet" href="styles/part-two/typing.css">
+<link rel="stylesheet" href="styles/part-two/raid.css">
+<link rel="stylesheet" href="styles/part-two/headlines.css">
+<link rel="stylesheet" href="styles/part-two/logos.css">
+<!-- the logo masks: their url() resolves next to the rule that uses it, so this one stays on the page -->
+<style>.logo.tint { mask: var(--logo) left center / contain no-repeat; -webkit-mask: var(--logo) left center / contain no-repeat; }</style>
+<link rel="stylesheet" href="styles/controls.css">
+<link rel="stylesheet" href="styles/fit.css">
+</head>
+<body>
+
+<!-- xorxnor showroom, pamphlet no. 01. One kloves run, as a shell session.
+     In each spread the text-cell look (ooo, kloves/luna) sits beside the
+     WebTUI one (xorxnor, stools); captions name the file each piece is from. -->
+
+<header class="cover">
+  <div class="mast">
+    <span class="brand"><span class="mark" id="mast-mark"></span><span class="muted">showroom</span></span>
+    <span class="muted" data-updated>pamphlet no. 01 · updated 2026-11-03</span>
+  </div>
+
+  <div class="grid">
+    <div class="span-7">
+      <p class="tui-cmd">whoami</p>
+      <h1 class="cover-title">Things<br>I make</h1>
+      <p class="dek lead">I'm TK, and I make whatever needs making. I named xorxnor after the XOR and XNOR logic gates: they feel intuitive, but they're built out of simpler gates you can rely on.</p>
+      <p class="muted">The first half follows kloves, from six finger measurements to the website. The second half is the rest of my projects and the lab, one per section.</p>
+    </div>
+    <aside class="span-5 screen">
+      <p class="kicker">color scheme</p>
+      <h2 id="name">xorxnor light</h2>
+      <p id="about"></p>
+      <nav id="skins"></nav>
+      <p class="row muted"><span>p next · shift+p back</span><button is-="button" size-="small" variant-="background2" id="auto" aria-pressed="false">auto</button></p>
+    </aside>
+  </div>
+
+  <figure class="inks">
+    <div class="cells ooo"><div class="game-choices" id="swatches"></div></div>
+    <figcaption>the colors in this scheme · ooo/components/choices.css</figcaption>
+  </figure>
+</header>
+
+<nav class="contents" aria-label="contents">
+  <p class="kicker">contents</p>
+  <ol id="contents">
+    <li><button data-go="s1"><b>01</b> measuring the hand <span class="muted">kloves new</span></button></li>
+    <li><button data-go="s2"><b>02</b> generating the files <span class="muted">kloves gen</span></button></li>
+    <li><button data-go="s3"><b>03</b> the 3D plates <span class="muted">open plates.stl</span></button></li>
+    <li><button data-go="s4"><b>04</b> the firmware <span class="muted">cat main.c</span></button></li>
+    <li><button data-go="s5"><b>05</b> the outline and the report <span class="muted">open report.pdf</span></button></li>
+    <li><button data-go="s6"><b>06</b> a color game <span class="muted">ooo</span></button></li>
+    <li><button data-go="s7"><b>07</b> streaming it <span class="muted">stools</span></button></li>
+    <li><button data-go="s8"><b>08</b> adding it to the website <span class="muted">xorxnor publish</span></button></li>
+    <li><button data-go="s9"><b>09</b> copying footage <span class="muted">offload-bay</span></button></li>
+    <li><button data-go="s10"><b>10</b> the cat warehouse <span class="muted">litterbox</span></button></li>
+    <li><button data-go="s11"><b>11</b> something to stare at <span class="muted">maze-patterns</span></button></li>
+    <li><button data-go="s12"><b>12</b> waking the screen up <span class="muted">splash-screen</span></button></li>
+    <li><button data-go="s13"><b>13</b> logging the workout <span class="muted">bufftime</span></button></li>
+    <li><button data-go="s14"><b>14</b> the bag <span class="muted">grunts</span></button></li>
+    <li><button data-go="s15"><b>15</b> a typing test <span class="muted">typing-speed</span></button></li>
+    <li><button data-go="s16"><b>16</b> a raid <span class="muted">stools</span></button></li>
+    <li><button data-go="s17"><b>17</b> headlines <span class="muted">ls projects</span></button></li>
+  </ol>
+</nav>
+
+<section class="step" id="s1">
+  <div class="head"><span class="num">01</span><div>
+    <p class="tui-cmd">kloves new</p>
+    <h2>measuring the hand</h2>
+    <p class="dek">kloves works in tenths of a key, one number per finger: how far that column moves up or down from flat. With the services doing the hard part, you only think about the fit (it fits… Kloves). This run used −0.4, 0.4, 1.2, 0.3, −0.9 and −0.9, pinky to pointer.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>kloves/luna/js/text.js · rule() row() seg7()</figcaption>
+      <div class="cells luna"><pre id="hand"></pre></div>
+    </figure>
+    <figure class="span-5"><figcaption>WebTUI · stools/tui.css</figcaption>
+      <form class="tui-window tui-shadow hand" data-title="profile" onsubmit="return false">
+        <label>pinky <input type="text" value="-0.4"></label>
+        <label>ring <input type="text" value="0.4"></label>
+        <label>middle <input type="text" value="1.2"></label>
+        <label>index a <input type="text" value="0.3"></label>
+        <label>index b <input type="text" value="-0.9"></label>
+        <label>pointer <input type="text" value="-0.9"></label>
+        <label class="wide"><input type="checkbox" is-="checkbox" checked> keep the receipt</label>
+        <button is-="button" variant-="accent" class="wide">generate</button>
+      </form>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s2">
+  <div class="head"><span class="num">02</span><div>
+    <p class="tui-cmd">kloves gen</p>
+    <h2>abfe417d373dbe87</h2>
+    <p class="dek">The six numbers get hashed into the run's name, so the same numbers always give the same files.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-5"><figcaption>kloves/luna/js/text.js</figcaption>
+      <div class="cells luna"><pre id="run"></pre></div>
+    </figure>
+    <figure class="span-7"><figcaption>xorxnor/tui/header.css · stools badges</figcaption>
+      <div class="tui-window" data-title="storage/abfe417d373dbe87">
+        <table class="tui-ls">
+          <thead><tr><th>file</th><th>size</th><th>from</th></tr></thead>
+          <tbody>
+            <tr><td><a href="samples/plates.stl">plates.stl</a></td><td>197K</td><td>scad/</td></tr>
+            <tr><td><a href="samples/profile.svg">profile.svg</a></td><td>754</td><td>svg/</td></tr>
+            <tr><td><a href="samples/main.c">firmware1/main.c</a></td><td>475</td><td>firmware/</td></tr>
+            <tr><td><a href="samples/receipt.pdf">receipt.pdf</a></td><td>1.6K</td><td>pdf/</td></tr>
+            <tr><td><a href="samples/report.pdf">report.pdf</a></td><td>2.2K</td><td>pdf/</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="row"><span is-="badge" variant-="live">ready</span><span is-="badge" variant-="live">via</span></p>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s3">
+  <div class="head"><span class="num">03</span><div>
+    <p class="tui-cmd">open plates.stl</p>
+    <h2>the 3D plates</h2>
+    <p class="dek">The switch plates are a 6 × 4 grid, with each column moved up or down by its finger's number.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-8"><figcaption>kloves/luna/js/gl3d.js</figcaption>
+      <div class="cells luna"><canvas class="view3d" id="view3d"></canvas></div>
+    </figure>
+    <figure class="span-4"><figcaption>kloves/luna/js/viewers.js, text mode</figcaption>
+      <div class="cells luna fine"><pre id="stl-text"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s4">
+  <div class="head"><span class="num">04</span><div>
+    <p class="tui-cmd">cat firmware1/main.c</p>
+    <h2>the firmware</h2>
+    <p class="dek">Each run comes with firmware built to work with VIA and generated for the layout you picked, so the keymap changes from the browser with no reflashing. Change the design (drop a row, add VIA options) and the firmware changes with it. This is the part that carries your six numbers.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-6"><figcaption>kloves/luna/js/syntax.js</figcaption>
+      <div class="cells luna"><pre id="luna-code"></pre></div>
+    </figure>
+    <figure class="span-6"><figcaption>xorxnor/blocks/Code (syntax colors need the Next.js build)</figcaption>
+      <div class="tui-window tui-shadow" data-title="main.c"><pre class="tui-code" id="xorx-code"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s5">
+  <div class="head"><span class="num">05</span><div>
+    <p class="tui-cmd">open profile.svg report.pdf</p>
+    <h2>the outline and the report</h2>
+    <p class="dek">profile.svg is the outline for cutting the case. report.pdf is the run's paperwork, with the circuit board checks for that board.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-5"><figcaption>kloves/luna/js/draft.js · draftSVG</figcaption>
+      <div class="cells luna"><canvas id="sheet-svg"></canvas></div>
+    </figure>
+    <figure class="span-7"><figcaption>kloves/luna/js/draft.js · draftPDF</figcaption>
+      <div class="cells luna"><canvas id="sheet-pdf"></canvas></div>
+    </figure>
+  </div>
+  <div class="grid board">
+    <figure class="span-5"><figcaption>kloves/storage/abfe417d373dbe87/pcb/kloves-d.svg</figcaption>
+      <div class="cells pcb"><a class="full" href="samples/kloves-d.svg" target="_blank" rel="noopener"><img src="samples/kloves-d.svg" width="1334" height="1505" alt="the kloves circuit board for run abfe417d373dbe87" loading="lazy"></a></div>
+    </figure>
+    <div class="span-7 board-note">
+      <p class="dek">KiCad lays out the board for the same six numbers, so no two runs get the same board.</p>
+    </div>
+  </div>
+</section>
+
+<section class="step" id="s6">
+  <div class="head"><span class="num">06<span class="logo tint" role="img" aria-label="ooo logo" style="--logo: url(samples/logos/ooo.svg); aspect-ratio: 347 / 187"></span></span><div>
+    <p class="tui-cmd">ooo</p>
+    <h2>a color game</h2>
+    <p class="dek">ooo is how I started bringing the TUI feel to the web (Departure Mono, forever). In Odd One Out, one of three swatches is a slightly different shade. You get 35 seconds and five hearts, and the difference gets smaller each round. 1, 2 and 3 pick too.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-5"><figcaption>ooo/components · hud health clock choices field</figcaption>
+      <div class="cells ooo">
+        <label class="field"><span class="field-label">name</span><span class="field-box" style="--cells: 12" data-empty="false"><input value="tk" maxlength="12" id="nick"><span class="field-cursor" style="--at: 2">▓</span></span></label>
+        <div class="game-hud"><span id="level">level 1</span><span id="health"></span><span class="game-hud-score" id="score">0 right</span></div>
+        <div class="game-clock" id="clock"><span class="game-clock-bar"></span><span class="game-hud-timer"></span></div>
+        <div class="game-choices" id="choices" style="--per-row: 3"></div>
+        <div class="row"><button type="button" id="again" hidden><span class="key">space</span> again</button><span class="dim" id="verdict"></span></div>
+      </div>
+    </figure>
+    <figure class="span-7"><figcaption>ooo/components/board.css · xorxnor .tui-ls</figcaption>
+      <div class="cells ooo"><div class="game-board" id="board"></div></div>
+      <div class="tui-window" data-title="scores"><table class="tui-ls"><thead><tr><th>player</th><th>right</th><th>hp</th></tr></thead><tbody id="board-ls"></tbody></table></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s7">
+  <div class="head"><span class="num">07<img class="logo" src="samples/logos/stools.svg" alt="stools logo" width="96" height="96"></span><div>
+    <p class="tui-cmd">stools</p>
+    <h2>streaming it</h2>
+    <p class="dek">stools started as voting tools for iDubbbz's event streams and grew into the overlays I run on my own stream (it's named after the furniture, like the guest's stool or the director's stool). It shares a stylesheet with the xorxnor site. Left is ooo's settings row, right is my on-air clock.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-6"><figcaption>ooo/base/buttons.css · settings.css · bars.css</figcaption>
+      <div class="cells ooo">
+        <div class="bottombar">
+          <span class="settings">
+            <button type="button" id="sound-toggle" aria-pressed="true"><span class="key">m</span> sound <span class="setting-value">on</span></button>
+            <button type="button" id="theme-next"><span class="key">p</span> theme <span class="setting-value" id="ooo-theme">xorxnor</span></button>
+            <button type="button" id="fullscreen-toggle" aria-pressed="false"><span class="key">f</span> full <span class="setting-value">off</span></button>
+          </span>
+        </div>
+        <div class="row"><button type="button" class="home-menu-btn" id="solo">solo</button><span class="dim">plays the round in 06</span></div>
+      </div>
+    </figure>
+    <figure class="span-6"><figcaption>stools/tui.css · .tui-numerals .tui-keybar · WebTUI buttons</figcaption>
+      <div class="tui-window tui-shadow onair" id="onair-win" data-title="stools · alerts">
+        <p class="tui-numerals" id="onair"><span>00</span><span class="sep">:</span><span>00</span><span class="minor">00</span></p>
+        <p class="row"><button is-="button" variant-="accent" id="live" aria-pressed="false">go live</button><button is-="button" variant-="red" id="live-end">end</button><button is-="button" variant-="background2" id="live-save">save</button></p>
+        <nav class="tui-keybar">
+          <a role="button" tabindex="0" data-view="scenes"><kbd>1</kbd><span>scenes</span></a>
+          <a role="button" tabindex="0" data-view="alerts" aria-current="page"><kbd>2</kbd><span>alerts</span></a>
+          <a role="button" tabindex="0" data-view="chat"><kbd>3</kbd><span>chat</span></a>
+          <a role="button" tabindex="0" data-view="off"><kbd>10</kbd><span>off</span></a>
+        </nav>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s8">
+  <div class="head"><span class="num">08<span class="logo tint" role="img" aria-label="xorxnor logo" style="--logo: url(samples/logos/xorxnor.svg); aspect-ratio: 15 / 7"></span></span><div>
+    <p class="tui-cmd">xorxnor publish kloves</p>
+    <h2>adding it to the website</h2>
+    <p class="dek">xorxnor is my site, built on Payload CMS and customized with elements made for what I post. These are its project cards. I swapped the pictures for code: kloves shows the function that names a run, and grunts shows the line that decides punch or move. The ooo one you can play.</p>
+  </div></div>
+  <div class="grid">
+    <article class="span-6 project-card tui-window tui-interactive" data-title="Product" data-go="s1" tabindex="0" role="link">
+      <div class="photo cells luna snippet"><pre data-snippet="kloves.go" data-fit="56" aria-label="kloves catio Hash(), the Go function that names a run"></pre></div>
+      <div>
+        <p class="muted">active │ 2026</p>
+        <h3>kloves</h3>
+        <p>Generates a keyboard from six finger measurements. Output is STL plates, an SVG outline, a KiCad board, firmware and PDF paperwork.</p>
+        <p><span class="tui-tag">openscad</span> <span class="tui-tag">kicad</span> <span class="tui-tag">c</span></p>
+        <p class="credit">kloves/software/catio/internal/pipeline/pipeline.go · Hash()</p>
+      </div>
+    </article>
+    <article class="span-6 project-card tui-window tui-interactive" data-title="Hardware" data-go="s14" tabindex="0" role="link">
+      <div class="photo cells luna snippet"><pre data-snippet="grunts.cpp" data-fit="62" aria-label="grunts PunchDetector classify, punch or move"></pre></div>
+      <div>
+        <p class="muted">active │ 2026</p>
+        <h3>grunts</h3>
+        <p>Counts punches and pace on a XIAO ESP32-S3 with a 0.91" OLED. It was punchathon, and boxer before that.</p>
+        <p><span class="tui-tag">esp32</span> <span class="tui-tag">c++</span></p>
+        <p class="credit">grunts/firmware/lib/PunchDetector/PunchDetector.cpp · classify()</p>
+      </div>
+    </article>
+    <article class="span-4 project-card tui-window tui-interactive" data-title="Product" data-go="s6" tabindex="0" role="link">
+      <div class="photo cells ooo mini-round"><div class="game-choices" id="mini" style="--per-row: 3"></div><p class="dim" id="mini-level">level 1 · find the odd one</p></div>
+      <div>
+        <p class="muted">active │ 2026</p>
+        <h3>Odd One Out</h3>
+        <p>A color game drawn in text. Find the swatch that's a shade off before the clock runs out.</p>
+        <p><span class="tui-tag">node</span> <span class="tui-tag">websockets</span></p>
+        <p class="credit">ooo/frontend/scripts/lib/odd.js · oddOf(), live</p>
+      </div>
+    </article>
+    <article class="span-8 project-card post-card tui-window tui-interactive" data-title="Post" data-go="s17" tabindex="0" role="link">
+      <div class="photo cat"><span class="logo tint" role="img" aria-label="the kit's cat mark" style="--logo: url(vendor/xoxn/marks/cat.svg); aspect-ratio: 1 / 1"></span></div>
+      <div>
+        <p class="muted">life update │ 2026-10-31</p>
+        <h3>The kitties have jobs now</h3>
+        <p>kloves runs on five services and I named every one after my cats, so this is how a shift goes:</p>
+        <pre class="limerick">pickles looks up every hash,
+then firecat builds files in a flash.
+buttercup keeps the key,
+catio does PDFs for me,
+and luna just naps on the cache.</pre>
+        <p><span class="tui-tag">kloves</span> <span class="tui-tag">cats</span></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="part" id="part2">
+  <p class="tui-cmd">ls ~/projects</p>
+  <h2 class="part-title">The rest of the bench</h2>
+  <p class="dek lead">That's kloves. From here on it's my other projects and the lab, one per section.</p>
+  <p class="placeholder">The numbers in these demos are sample data: the card in offload bay, litterbox's stock, bufftime's sets, the punches and the raids.</p>
+</div>
+
+<section class="step" id="s9">
+  <div class="head"><span class="num">09</span><div>
+    <p class="tui-cmd">offload-bay</p>
+    <h2>copying footage</h2>
+    <p class="dek">offload bay is how I give old machines a second life (anything that runs Alpine will do). Plug a camera card into it and it counts down, copies every clip and checks each copy with md5, and only then says it's safe to pull the card. The screen shows one thing at a time so I can read it from across the room.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>offload-bay/lib/ui.sh · symbols.sh · sample card</figcaption>
+      <div class="cells"><pre id="kiosk" class="kiosk" data-fit="35" aria-label="offload bay screen"></pre></div>
+    </figure>
+    <figure class="span-5"><figcaption>xoxn/sh/lib.sh · ok info warn fail</figcaption>
+      <div class="tui-window" data-title="tail -f offload.log"><pre class="tui-code kiosk-log" id="kiosk-log"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s10">
+  <div class="head"><span class="num">10</span><div>
+    <p class="tui-cmd">litterbox run</p>
+    <h2>the cat warehouse</h2>
+    <p class="dek">litterbox is where my simulations live (where kittens try things). This one is a warehouse picker: a gantry arm goes from bin to bin, picks until it's full, then drops off and refills any bin that ran empty. The kitties are my cats, so a different one takes each trip, and its banner from the kit shows who's on.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>litterbox/internal/view/web/index.html · sample stock</figcaption>
+      <div class="litter-wrap"><div class="litter" id="litter"></div><div class="litter-panel" id="litter-panel"></div></div>
+    </figure>
+    <figure class="span-5"><figcaption>xoxn/packages/marks/dist/txt · on shift: <span id="banner-name">fire-cat</span></figcaption>
+      <div class="cells banner-box"><pre id="banner" class="banner"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s11">
+  <div class="head"><span class="num">11</span><div>
+    <p class="tui-cmd">open reaction_diffusion.html</p>
+    <h2>something to stare at</h2>
+    <p class="dek">maze-patterns grows organic patterns with Gray-Scott reaction-diffusion and turns them into sharp mazes as SVG. Nudge F and k to get spots or coral.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>maze-patterns/rd/reaction_diffusion.html · <span id="rd-fk"></span></figcaption>
+      <div class="cells rd-cells"><canvas id="rd" class="rd" tabindex="0" aria-label="reaction diffusion, arrows change it, space pauses, r resets"></canvas></div>
+    </figure>
+    <figure class="span-5"><figcaption>WebTUI · stools/tui.css</figcaption>
+      <div class="tui-window tui-shadow rd-panel" data-title="gray-scott">
+        <table class="tui-ls"><tbody>
+          <tr><td>F feed</td><td id="rd-F">0.035</td><td class="rd-nudge"><button is-="button" size-="small" variant-="background2" data-rd="F-">−</button><button is-="button" size-="small" variant-="background2" data-rd="F+">+</button></td></tr>
+          <tr><td>k kill</td><td id="rd-k">0.065</td><td class="rd-nudge"><button is-="button" size-="small" variant-="background2" data-rd="k-">−</button><button is-="button" size-="small" variant-="background2" data-rd="k+">+</button></td></tr>
+        </tbody></table>
+        <p class="row"><button is-="button" size-="small" variant-="accent" data-rd="pause" id="rd-pause">pause</button><button is-="button" size-="small" variant-="background2" data-rd="reset">reset</button></p>
+      </div>
+      <div class="tui-window" data-title="ls rd/">
+        <table class="tui-ls"><tbody>
+          <tr><td>reaction_diffusion.html</td><td>4.2K</td></tr>
+          <tr><td><a href="samples/maze.svg">sharp_maze_c5_d4_s25.svg</a></td><td>5.8K</td></tr>
+          <tr><td>sharp_maze_c6_d5_s45.svg</td><td>395</td></tr>
+          <tr><td>sharp_maze_c8_d7_s35.svg</td><td>395</td></tr>
+        </tbody></table>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s12">
+  <div class="head"><span class="num">12</span><div>
+    <p class="tui-cmd">python3 main.py</p>
+    <h2>waking the screen up</h2>
+    <p class="dek">splash-screen draws a 1-bit bitmap one pixel at a time in a random order, then wipes it away. The words over it get the CRT look the xorxnor hero has, with a color fringe and, now and then, a small glitch.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>splash-screen/rendering/image_renderer.py · drawing_utils.py</figcaption>
+      <div class="cells luna"><canvas id="splash" class="splash" tabindex="0" aria-label="the splash cat, enter plays it again"></canvas></div>
+    </figure>
+    <figure class="span-5"><figcaption>xorxnor/heros/CrtText.tsx · tui/crt.css</figcaption>
+      <div class="crt-text crt-box" id="crt">
+        <h1>hello</h1>
+        <div class="tui-window tui-shadow" data-title="tty1"><p>xorxnor tty1<br>login: tk</p></div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s13">
+  <div class="head"><span class="num">13<span class="logo tint" role="img" aria-label="bufftime logo" style="--logo: url(samples/logos/bufftime.svg); aspect-ratio: 1 / 1"></span></span><div>
+    <p class="tui-cmd">bufftime</p>
+    <h2>logging the workout</h2>
+    <p class="dek">bufftime is a workout log that looks like a terminal and keeps everything in the browser. The splash flickers through fire colors. On the log, the set you're typing shows in big block digits.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-5"><figcaption>bufftime/frontend/scripts/screens/splash.js</figcaption>
+      <div class="buff fine"><pre id="buff-splash" data-fit="40"></pre></div>
+    </figure>
+    <figure class="span-7"><figcaption>bufftime screens/log.js · term/html.js · sample sets</figcaption>
+      <div class="buff fine"><pre id="buff-log" data-fit="64" tabindex="0" aria-label="bufftime, arrows switch tabs, t changes theme"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s14">
+  <div class="head"><span class="num">14</span><div>
+    <p class="tui-cmd">grunts demo</p>
+    <h2>the bag</h2>
+    <p class="dek">grunts started as a gag: a speaker that records your gym motion, counts reps and grunts at the end of each one. Now it counts punches from the wrist (it was punchathon, and boxer before that). Its demo is a Go terminal app with a tab each for the punches, where they landed and the heart strap. Press p on it to throw one. The OLED next to it counts the same hits, and a hit is a punch or a move, nothing in between.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-9"><figcaption>grunts/tools/demo/internal/panel · ported from Go, sample numbers</figcaption>
+      <div class="cells grunts-box"><pre id="grunts" data-fit="48" tabindex="0" aria-label="grunts demo, arrows switch tabs, p throws a punch"></pre></div>
+    </figure>
+    <figure class="span-3"><figcaption>PunchDisplay.cpp</figcaption>
+      <div class="side-stack">
+        <div class="oled" id="oled" tabindex="0" role="img" aria-label="the 128 × 32 OLED, the same count as the demo"><b>0</b><span>PUNCHES</span><i></i></div>
+        <pre class="tui-code serial" id="serial">waiting for a hit</pre>
+        <div class="oled-controls"><button is-="button" size-="small" id="oled-theme">colors: PANEL</button></div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s15">
+  <div class="head"><span class="num">15</span><div>
+    <p class="tui-cmd">./typing_speed</p>
+    <h2>a typing test</h2>
+    <p class="dek">typing-speed is an ncurses test from the lab. Type over the first line and hit enter. Stop for five seconds and the line is thrown away.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-12"><figcaption>typing-speed/typing_speed.cpp · Passages.txt</figcaption>
+      <div class="cells"><pre id="typing" class="typing" data-fit="58" tabindex="0" aria-label="typing test, type the first line and press enter"></pre></div>
+    </figure>
+  </div>
+</section>
+
+<section class="step" id="s16">
+  <div class="head"><span class="num">16<img class="logo" src="samples/logos/stools.svg" alt="stools logo" width="96" height="96"></span><div>
+    <p class="tui-cmd">stools</p>
+    <h2>a raid</h2>
+    <p class="dek">When someone raids, stools plays the alert in its alert box, saves and renames scenes, and asks before anything that can't be undone.</p>
+  </div></div>
+  <div class="grid">
+    <figure class="span-7"><figcaption>stools/overlay/public/js/overlay/alert-box.js · sample raids · <span id="raid-log"></span></figcaption>
+      <div class="stage" id="stage" data-skin="xorxnor" data-mode="dark"></div>
+    </figure>
+    <figure class="span-5"><figcaption>stools js/lib/toast.js · dialog.js · WebTUI buttons</figcaption>
+      <div class="tui-window tui-shadow raid" id="scene" data-title="scene: just chatting">
+        <p class="row"><button is-="button" variant-="accent" id="raid">test alert</button><button is-="button" variant-="background2" id="save">save</button></p>
+        <p class="row"><button is-="button" variant-="background2" id="rename">rename</button><button is-="button" variant-="red" id="end">end stream</button></p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="step news" id="s17">
+  <div class="head"><span class="num">17</span><div>
+    <p class="tui-cmd">ls -t ~/projects</p>
+    <h2>headlines</h2>
+    <p class="dek">What else is on the bench right now.</p>
+  </div></div>
+  <div class="grid">
+    <article class="span-12 item lead">
+      <div class="logo-row"><span class="logo tint" role="img" aria-label="edble logo" style="--logo: url(samples/logos/edble.svg); aspect-ratio: 19 / 3"></span></div>
+      <p class="kicker">edble · active</p>
+      <h3>Restaurant sites whose menus print themselves</h3>
+      <p>edble (edible, minus the i) is Payload CMS turned around for restaurants: easy to set up, with fine-grained control, and the same idea as kloves, where the ownership goes to the user. It has menus, opening hours, events and a blog, plus a staff admin where what you can edit depends on the location you work at. Every menu also comes out as a print-ready PDF, so the one on the table and the one on the site are always the same menu. It runs on Payload 3, Next.js 16 and PostgreSQL, and the demo seeds a "Demo Bistro" with three locations.</p>
+    </article>
+    <article class="span-8 item">
+      <div class="logo-row"><span class="logo tint" role="img" aria-label="ooo logo" style="--logo: url(samples/logos/ooo.svg); aspect-ratio: 347 / 187"></span></div>
+      <p class="kicker">ooo · active</p>
+      <h3>Seventeen screens, captured on every push</h3>
+      <p>A script in ooo opens every screen of the game in three sizes and two themes and saves each one as SVG and PNG, so a change that breaks a screen shows up in the diff. These four are desktop in noctua.</p>
+      <div class="screens">
+        <a class="full" href="samples/ooo-01-home.png" target="_blank" rel="noopener"><img src="samples/ooo-01-home.png" width="2880" height="1920" alt="ooo home screen" loading="lazy"></a>
+        <a class="full" href="samples/ooo-06-queue.png" target="_blank" rel="noopener"><img src="samples/ooo-06-queue.png" width="2880" height="1920" alt="ooo waiting for players" loading="lazy"></a>
+        <a class="full" href="samples/ooo-15-solo.png" target="_blank" rel="noopener"><img src="samples/ooo-15-solo.png" width="2880" height="1920" alt="ooo solo practice" loading="lazy"></a>
+        <a class="full" href="samples/ooo-17-solo-new-best.png" target="_blank" rel="noopener"><img src="samples/ooo-17-solo-new-best.png" width="2880" height="1920" alt="ooo solo, new best" loading="lazy"></a>
+      </div>
+      <p class="credit">ooo/output/screens/desktop-noctua · tools/screens</p>
+    </article>
+    <article class="span-4 item">
+      <p class="kicker">app-template · starter</p>
+      <h3>A phone app that starts out looking like a CRT</h3>
+      <p>The template every phone idea starts from: Expo and React Native, orange on black, with a green dark mode. Redrawn here in HTML from its components' styles.</p>
+      <div class="phone" id="phone" data-mode="light">
+        <div class="phone-tabs"><button type="button" aria-pressed="true" data-mode="light">amber</button><button type="button" aria-pressed="false" data-mode="dark">green</button></div>
+        <p class="phone-count" id="phone-count">000</p>
+        <div class="phone-drum" id="phone-drum" tabindex="0" aria-label="number picker, arrows change it"></div>
+        <button type="button" class="phone-button" id="phone-button"><span>press</span></button>
+      </div>
+      <p class="credit">app-template/components · CRTButton NumberSlider TabSwitcher Counter · theme.js</p>
+    </article>
+    <article class="span-6 item">
+      <p class="kicker">kloves · active</p>
+      <h3>All five services are named after my cats</h3>
+      <p>luna is the web UI and pickles looks up the hash of your six numbers. A new hash goes once to firecat, which generates the files, and buttercup is the only one holding the storage keys. After that the files are cached for good.</p>
+      <div class="cells fine"><pre data-fit="51" aria-label="kloves services diagram">browser ─► luna ─► pickles ──► firecat ─► catio
+           web UI  resolver │  generator  OpenSCAD,
+                      │     │             gcc, PDF
+                      │     ▼
+                      └─► buttercup ─► storage</pre></div>
+      <p class="credit">kloves/README.md</p>
+    </article>
+    <article class="span-6 item">
+      <div class="logo-row"><img class="logo" src="samples/logos/stools.svg" alt="stools logo" width="96" height="96"></div>
+      <p class="kicker">stools · active</p>
+      <h3>Every overlay scene gets its own address</h3>
+      <p>One Go binary serves the OBS overlays at localhost:3000/&lt;scene&gt;. Twitch events and chat both trigger the same scenes. The stream output is always dark.</p>
+      <div class="tui-window" data-title="effects">
+        <table class="tui-ls">
+          <tbody><tr><td>default</td><td>subtle</td></tr><tr><td>banner</td><td>hype</td></tr></tbody>
+        </table>
+      </div>
+      <p class="credit">stools/overlay/data/effects</p>
+    </article>
+    <article class="span-12 item">
+      <p class="kicker">xoxn · shared</p>
+      <h3>One color file per scheme</h3>
+      <p>I keep one color file per scheme so I can test themes and feel them. Everything on this page pulls its colors, font and marks from there.</p>
+      <div class="chips" id="chips"></div>
+      <p class="credit">xoxn/packages/skins/dist/skins.json</p>
+    </article>
+    <article class="span-12 item brief">
+      <div class="logo-row"><span class="logo tint" role="img" aria-label="xorxnor logo" style="--logo: url(samples/logos/xorxnor.svg); aspect-ratio: 15 / 7"></span></div>
+      <p class="kicker">xorxnor · active</p>
+      <h3>A resume that comes out as a PDF</h3>
+      <p>The company site is a terminal. It's Payload CMS and Next.js styled with WebTUI, with a command prompt over the menu and elements built for what I post. The resume lives in the admin and comes out as a one-page PDF, rendered on the server from the same data as the page, with a tailored version for each job I apply to. The project cards in 08 are its markup, and this pamphlet is its own project (<span class="muted">showroom</span>).</p>
+    </article>
+  </div>
+</section>
+
+<footer class="back">
+  <p class="tui-cmd">exit</p>
+  <div class="grid">
+    <figure class="span-5"><figcaption>xoxn/marks</figcaption>
+      <div class="marks" id="marks"></div>
+    </figure>
+    <div class="span-7 colophon">
+      <p class="kicker">colophon</p>
+      <p>Set in Departure Mono at multiples of 11px. The color schemes come from xoxn. Every piece here runs on its own project's CSS and JavaScript, copied in by build.mjs. The kloves files come from a real run; the cats' scores in the game are made up.</p>
+    </div>
+  </div>
+  <p class="sign">TK · xoxn · 2026</p>
+</footer>
+
+<div class="tui-statusline">
+  <span class="tui-mode" id="mode">light</span>
+  <span id="status"></span>
+</div>
+
+<script src="skins.js"></script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

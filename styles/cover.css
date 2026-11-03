@@ -1,0 +1,30 @@
+/* showroom: the cover, its scheme panel and the contents. TK · xoxn · 2026 */
+.cover { display: grid; gap: 2lh; padding-bottom: 2lh; }
+.mast { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 2ch; padding: 1lh 0 0.5lh; border-bottom: 2px solid var(--text); }
+.brand { display: flex; align-items: center; gap: 1ch; font-size: var(--head); }
+.mark { display: inline-flex; color: var(--action); }
+.mark svg { height: 1lh; width: auto; }
+.cover-title { margin: 22px 0 33px; font-size: var(--cover); line-height: 1; letter-spacing: -0.02em; }
+.screen { display: flex; flex-direction: column; gap: 0.5lh; padding-left: 3ch; border-left: 2px solid var(--line); }
+.screen h2 { font-size: var(--big); line-height: 1; color: var(--action); }
+#skins { display: flex; flex-wrap: wrap; gap: 0 1ch; margin: 0.5lh 0; }
+#auto[aria-pressed='true'] { --button-primary: var(--action); --button-secondary: var(--action-text); }
+@media (max-width: 64rem) {
+  .screen { padding: 1lh 0 0; border-left: 0; border-top: 2px solid var(--line); }
+}
+#swatches { --per-row: 7; }
+@media (max-width: 40rem) {
+  #swatches { --per-row: 4; }
+}
+
+.contents { padding: 2lh 0; border-block: 2px solid var(--text); }
+.contents ol { list-style: none; margin: 1lh 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); grid-auto-flow: column; gap: 0.25lh 6ch; }
+@media (max-width: 64rem) {
+  .contents ol { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-flow: row; }
+}
+.contents button { all: unset; cursor: pointer; display: flex; gap: 1ch; align-items: baseline; width: 100%; padding: 0.15lh 0.5ch; box-sizing: border-box; }
+.contents button:hover, .contents button:focus-visible { background: var(--text); color: var(--surface); }
+.contents button:hover .muted, .contents button:focus-visible .muted { color: inherit; }
+.contents b { font-weight: normal; color: var(--action); }
+.contents button:hover b { color: inherit; }
+.contents .muted { margin-left: auto; font-size: var(--text-xs); }

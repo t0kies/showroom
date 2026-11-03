@@ -1,0 +1,18 @@
+/* showroom: 14: grunts' panel and its OLED; with no grunts theme set, the page's scheme shows. TK · xoxn · 2026 */
+.grunts-box { background: var(--g-bg, var(--xn-bg)); color: var(--g-fg, var(--xn-fg)); }
+.g-fg { color: var(--g-fg, var(--xn-fg)); }
+.g-dim { color: var(--g-dim, var(--xn-fg2)); }
+.g-ok { color: var(--g-ok, var(--xn-ok)); }
+.g-warn { color: var(--g-warn, var(--xn-warn)); }
+.g-err { color: var(--g-err, var(--xn-err)); }
+.g-accent { color: var(--g-accent, var(--xn-accent)); cursor: pointer; text-decoration: underline; }
+.g-hit, .g-flash { color: var(--g-bg, var(--xn-bg)); background: var(--g-fg, var(--xn-fg)); }
+.g-tab { color: var(--g-bg, var(--xn-on)); background: var(--g-accent, var(--xn-accent)); }
+#grunts [data-tab] { cursor: pointer; }
+/* the OLED: one color on black, like the panel; its themes set --g-fg and --g-bg */
+.oled { background: var(--g-bg, #000); color: var(--g-fg, #9ad8ff); cursor: pointer; outline-offset: 2px; }
+.oled.flash { box-shadow: inset 0 0 0 2px currentColor; }
+.oled-controls { display: flex; flex-wrap: wrap; gap: 1ch; align-items: center; }
+.t-ok { color: var(--xn-ok); }
+.side-stack { flex: 1; display: flex; flex-direction: column; justify-content: start; gap: 1lh; }
+.side-stack .serial { padding: 0.5lh 2ch; }

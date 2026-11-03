@@ -1,0 +1,157 @@
+/* Effects, code listings and rich text set like a terminal pager */
+@layer components {
+  /* ── effects ──────────────────────────────────────────────── */
+
+  .dither {
+    --dither-ink: color-mix(in oklab, var(--foreground0) 8%, transparent);
+    background-image: repeating-conic-gradient(var(--dither-ink) 0% 25%, transparent 0% 50%);
+    background-size: 6px 6px;
+    image-rendering: pixelated;
+  }
+  [data-effects='false'] .dither {
+    background-image: none;
+  }
+
+  /* Faint CRT scanlines, only over the first-screen heroes (Super, High) */
+  @media screen {
+    [data-effects='true'] .hero-scanlines {
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0 2px,
+        color-mix(in oklab, black 30%, transparent) 2px 3px
+      );
+    }
+  }
+
+  /* ── code listing (blocks/Code): long lines wrap, numbers keep a column ── */
+
+  .tui-code {
+    margin: 0;
+    padding: 0.75lh 1ch 0.5lh;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .tui-code-number {
+    flex-shrink: 0;
+    padding-right: 2ch;
+    color: var(--foreground2);
+    text-align: right;
+    user-select: none;
+  }
+  .tui-code-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* ── rich text, set like a terminal pager ─────────────────── */
+
+  .prose {
+    max-width: 72ch;
+    color: var(--foreground1);
+  }
+  .prose > * + * {
+    margin-top: 1lh;
+  }
+  .prose :is(h1, h2, h3, h4) {
+    margin-top: 1.5lh;
+    color: var(--foreground0);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .prose > :first-child {
+    margin-top: 0;
+  }
+  .prose h1 {
+    font-size: 1.75rem;
+  }
+  .prose h2 {
+    font-size: 1.375rem;
+  }
+  .prose h3 {
+    font-size: 1.125rem;
+  }
+  .prose h1::before {
+    content: '# ';
+    color: var(--link);
+  }
+  .prose h2::before {
+    content: '## ';
+    color: var(--link);
+  }
+  .prose h3::before {
+    content: '### ';
+    color: var(--link);
+  }
+  .prose h4::before {
+    content: '#### ';
+    color: var(--link);
+  }
+  .prose strong {
+    color: var(--foreground0);
+  }
+  .prose a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    background-color: var(--link);
+    color: var(--background0);
+    text-decoration: none;
+  }
+  .prose :is(ul, ol) {
+    padding-left: 3ch;
+  }
+  .prose ul {
+    list-style: '- ';
+  }
+  .prose ol {
+    list-style: decimal;
+  }
+  .prose li::marker {
+    color: var(--link);
+  }
+  .prose li + li {
+    margin-top: 0.25lh;
+  }
+  .prose blockquote {
+    padding-left: 2ch;
+    border-left: 2px solid var(--link);
+    color: var(--foreground2);
+  }
+  .prose :not(pre) > code {
+    padding: 0 0.5ch;
+    background-color: var(--background1);
+    color: var(--ansi-cyan);
+  }
+  .prose :is(img, video) {
+    border: 2px solid var(--box-border-color);
+  }
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .prose :is(th, td) {
+    padding: 0.15lh 1ch;
+    border: 2px solid var(--box-border-color);
+    text-align: left;
+  }
+
+  /* Hero headings: the one place type gets big, like figlet output.
+     After .prose so it wins over the pager heading sizes. */
+  .hero-display h1 {
+    margin-top: 0;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hero-display h1::before {
+    content: none !important;
+  }
+  /* Beside a media pane (Medium Impact) the column is narrower */
+  .hero-display-split h1 {
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+  }
+}

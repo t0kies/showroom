@@ -1,0 +1,59 @@
+/* Color roles. Nothing here is a color: every role refers to a swatch of
+   the active palette (css/xoxn/skin/<name>.css via css/xoxn/adapters/luna.css, loaded before this file by
+   index.html), or is mixed from them, so light and dark palettes both work
+   without touching anything else.
+
+   A palette defines these swatches on :root:
+     --c-glass-hi, --c-glass, --c-glass-lo   the LCD glass, top → bottom
+     --c-ink                                 text
+     --c-on                                  text on ink (selected, hovered)
+     --c-shadow                              drop shadow (with alpha)
+     --c-r, --c-g, --c-b                     the three colored inks
+   and may set --c-ghost, --c-dot, --c-sheen to replace the derived ones.
+
+   JS reads --ink, --R, --G and --shadow at draw time (js/palette.js). */
+:root {
+  /* the glass, its dot matrix and brushed sheen */
+  --bg-hi: var(--c-glass-hi);
+  --bg: var(--c-glass);
+  --bg-lo: var(--c-glass-lo);
+  --bg-dot: var(--c-dot, color-mix(in srgb, var(--c-ink) 6%, transparent));
+  --bg-sheen: var(--c-sheen, color-mix(in srgb, white 9%, transparent));
+
+  /* text, text on inverted cells, the shadow and the text selection */
+  --ink: var(--c-ink);
+  --ink-on: var(--c-on);
+  --shadow: var(--c-shadow);
+  --select: var(--c-shadow);
+
+  /* the three inks: area gradients, bars (G up, R down, B selected),
+     3D and sheet outlines */
+  --R: var(--c-r);
+  --G: var(--c-g);
+  --B: var(--c-b);
+
+  /* unlit LCD segments and empty bar cells */
+  --ghost: var(--c-ghost, color-mix(in srgb, var(--c-r) 11%, transparent));
+  --ghost-alt: color-mix(in srgb, var(--c-g) 12%, transparent);
+
+  /* secondary text (hints, labels) and its fainter shadow */
+  /* 80%: dim text still reads as dimmer, and clears MIL-STD-1472F
+     5.2.4.2.2.1's 6:1 against the glass wherever the ink itself does */
+  --dim: color-mix(in srgb, var(--c-ink) 80%, transparent);
+  --dim-shadow: color-mix(in srgb, var(--c-shadow) 55%, transparent);
+
+  /* syntax colors in the raw view, mixed from the inks */
+  --syn-keyword: var(--R);
+  --syn-type: var(--G);
+  --syn-string: var(--B);
+  --syn-func: color-mix(in srgb, var(--B) 55%, var(--R));
+  --syn-number: color-mix(in srgb, var(--R) 55%, var(--G));
+  --syn-attr: color-mix(in srgb, var(--G) 60%, var(--R));
+  --syn-comment: color-mix(in srgb, var(--c-ink) 45%, transparent);
+  --syn-comment-shadow: color-mix(in srgb, var(--c-shadow) 40%, transparent);
+  --syn-punct: color-mix(in srgb, var(--c-ink) 70%, transparent);
+
+  /* how strongly each area's dot grid shows its ink (areas.css) */
+  --dot-strong: 10%;
+  --dot-faint: 5%;
+}
