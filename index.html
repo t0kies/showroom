@@ -220,7 +220,7 @@
       <div class="cells pcb"><a class="full" href="samples/kloves-d.svg" target="_blank" rel="noopener"><img src="samples/kloves-d.svg" width="1334" height="1505" alt="the kloves circuit board for run abfe417d373dbe87" loading="lazy"></a></div>
     </figure>
     <div class="span-7 board-note">
-      <p class="dek">KiCad lays out the board for the same six numbers, so no two runs get the same board.</p>
+      <p class="dek">KiCad lays out the board for the same six numbers, so each set of numbers gets its own board.</p>
     </div>
   </div>
 </section>
@@ -229,7 +229,7 @@
   <div class="head"><span class="num">06<span class="logo tint" role="img" aria-label="ooo logo" style="--logo: url(samples/logos/ooo.svg); aspect-ratio: 347 / 187"></span></span><div>
     <p class="tui-cmd">ooo</p>
     <h2>a color game</h2>
-    <p class="dek">ooo is how I started bringing the TUI feel to the web (Departure Mono, forever). In Odd One Out, one of three swatches is a slightly different shade. You get 35 seconds and five hearts, and the difference gets smaller each round. 1, 2 and 3 pick too.</p>
+    <p class="dek">ooo is how I started bringing the TUI feel to the web (Departure Mono, forever). In Odd One Out, one of three swatches is a slightly different shade. You get 35 seconds and five hearts, and the difference gets smaller each round. Click a swatch or press 1, 2 or 3.</p>
   </div></div>
   <div class="grid">
     <figure class="span-5"><figcaption>ooo/components · hud health clock choices field</figcaption>
@@ -296,7 +296,7 @@
         <h3>kloves</h3>
         <p>Generates a keyboard from six finger measurements. Output is STL plates, an SVG outline, a KiCad board, firmware and PDF paperwork.</p>
         <p><span class="tui-tag">openscad</span> <span class="tui-tag">kicad</span> <span class="tui-tag">c</span></p>
-        <p class="credit">kloves/software/catio/internal/pipeline/pipeline.go · Hash()</p>
+        <p class="credit">catio/internal/pipeline/pipeline.go · Hash()</p>
       </div>
     </article>
     <article class="span-6 project-card tui-window tui-interactive" data-title="Hardware" data-go="s14" tabindex="0" role="link">
@@ -304,7 +304,7 @@
       <div>
         <p class="muted">active │ 2026</p>
         <h3>grunts</h3>
-        <p>Counts punches and pace on a XIAO ESP32-S3 with a 0.91" OLED. It was punchathon, and boxer before that.</p>
+        <p>Counts punches and pace on a XIAO ESP32-S3 with a 0.91" OLED.</p>
         <p><span class="tui-tag">esp32</span> <span class="tui-tag">c++</span></p>
         <p class="credit">grunts/firmware/lib/PunchDetector/PunchDetector.cpp · classify()</p>
       </div>
@@ -379,7 +379,7 @@ and luna just naps on the cache.</pre>
   <div class="head"><span class="num">11</span><div>
     <p class="tui-cmd">python3 sharp_maze_svg.py</p>
     <h2>something to stare at</h2>
-    <p class="dek">maze-patterns grows organic patterns with Gray-Scott reaction-diffusion and turns them into sharp shapes as SVG (I was after knurling patterns with it). Here it runs slowly: the pattern grows, a border boxes it in, it goes sharp, then it comes out as SVG. Every load and every color change starts a new one.</p>
+    <p class="dek">maze-patterns grows organic patterns with Gray-Scott reaction-diffusion and turns them into sharp shapes as SVG (I was after knurling patterns with it). Here the same steps run slowly in the browser: the pattern grows, a border boxes it in, it goes sharp, then it comes out as SVG. Every load and every color change starts a new one.</p>
   </div></div>
   <div class="grid">
     <figure class="span-7"><figcaption>maze-patterns/rd · <span id="kn-what"></span></figcaption>
@@ -448,7 +448,7 @@ and luna just naps on the cache.</pre>
   <div class="head"><span class="num">14</span><div>
     <p class="tui-cmd">grunts demo</p>
     <h2>the bag</h2>
-    <p class="dek">grunts started as a gag: a speaker that records your gym motion, counts reps and grunts at the end of each one. Now it counts punches from the wrist (it was punchathon, and boxer before that). Its demo is a Go terminal app with a tab each for the punches, where they landed and the heart strap. Press p on it to throw one. The OLED next to it counts the same hits, and a hit is a punch or a move, nothing in between.</p>
+    <p class="dek">grunts started as a gag: a speaker that records your gym motion, counts reps and grunts at the end of each one. Now it counts punches from the wrist (it was punchathon, and boxer before that). Its demo is a Go terminal app with a tab each for the punches, where they landed and the heart strap. Press p on it to throw one. The OLED next to it counts the same hits, and a hit is either a punch or a move.</p>
   </div></div>
   <div class="grid">
     <figure class="span-9"><figcaption>grunts/tools/demo/internal/panel · ported from Go, sample numbers</figcaption>
@@ -512,7 +512,7 @@ and luna just naps on the cache.</pre>
     <article class="span-8 item">
       <div class="logo-row"><span class="logo tint" role="img" aria-label="ooo logo" style="--logo: url(samples/logos/ooo.svg); aspect-ratio: 347 / 187"></span></div>
       <p class="kicker">ooo · active</p>
-      <h3>Seventeen screens, captured on every push</h3>
+      <h3>Seventeen screens, captured by one script</h3>
       <p>A script in ooo opens every screen of the game in three sizes and two themes and saves each one as SVG and PNG, so a change that breaks a screen shows up in the diff. These four are desktop in noctua.</p>
       <div class="screens">
         <a class="full" href="samples/ooo-01-home.png" target="_blank" rel="noopener"><img src="samples/ooo-01-home.png" width="2880" height="1920" alt="ooo home screen" loading="lazy"></a>

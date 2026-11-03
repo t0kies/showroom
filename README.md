@@ -69,14 +69,14 @@ ooo's captured screens, stools' effects and the kit's color schemes.
 The page imports each project's real modules: ooo's `oddOf()` and board run the
 round, luna's text cells, 3D view and PDF viewer draw the run, and bufftime
 paints its own screens. They sit in `vendor/` as they are, with three changes
-so they get along on one page (stools' `/css/` paths made relative, luna's
+so they work on one page (stools' `/css/` paths made relative, luna's
 `signal` scheme keyed on `data-skin`, and ooo's and luna's styles wrapped in
 `@scope` so they leave the WebTUI side alone).
 
 The cards in 08 show kloves' `Hash()` and grunts' `classify()`, cut out of the
 Go and C++ by the build and highlighted by luna. grunts' terminal themes come
 straight out of its Go palette too. In 14 the panel and the OLED both read one
-hit count (`hits.js`), where a hit is a punch or a move, so they always agree.
+hit count (`hits.js`), where a hit is either a punch or a move.
 
 Everything sits on a 12-column grid that holds from 360px up, and `fit.js` sizes
 each fixed-width screen to the biggest crisp font that fits. The color schemes
