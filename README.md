@@ -51,7 +51,7 @@ section:
 |---|---|---|
 | 09 | kiosk frames, progress bar, shell log marks | offload-bay `lib/ui.sh` `symbols.sh`, xoxn `sh/lib.sh` |
 | 10 | live warehouse grid, cat banners | litterbox `view/web/index.html`, xoxn `marks/dist/txt` |
-| 11 | reaction-diffusion canvas, maze SVG | maze-patterns `rd/` |
+| 11 | a knurling pattern growing, boxed in, made sharp and traced to SVG | maze-patterns `rd/` |
 | 12 | 1-bit pixel splash, CRT glitch text | splash-screen, xorxnor `CrtText.tsx` `crt.css` |
 | 13 | terminal screens, fire splash, block digits | bufftime `scripts/` |
 | 14 | PUNCH / AIM / HEART tabs and the OLED | grunts `tools/demo/internal/panel`, `firmware/src` |
@@ -84,8 +84,8 @@ come from the kit's skins plus luna's signal, and every piece listens to the
 same one, so `p` repaints both sides at once.
 
 The logic that doesn't need a page (the round's rules, the hit count, typing
-scores, the reaction-diffusion grid and the build's cutters) runs under
-`node --test`.
+scores, the knurling run's cleanup and tracing, and the build's cutters) runs
+under `node --test`.
 
 <br>
 

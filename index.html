@@ -377,34 +377,38 @@ and luna just naps on the cache.</pre>
 
 <section class="step" id="s11">
   <div class="head"><span class="num">11</span><div>
-    <p class="tui-cmd">open reaction_diffusion.html</p>
+    <p class="tui-cmd">python3 sharp_maze_svg.py</p>
     <h2>something to stare at</h2>
-    <p class="dek">maze-patterns grows organic patterns with Gray-Scott reaction-diffusion and turns them into sharp mazes as SVG. Nudge F and k to get spots or coral.</p>
+    <p class="dek">maze-patterns grows organic patterns with Gray-Scott reaction-diffusion and turns them into sharp shapes as SVG (I was after knurling patterns with it). Here it runs slowly: the pattern grows, a border boxes it in, it goes sharp, then it comes out as SVG. Every load and every color change starts a new one.</p>
   </div></div>
   <div class="grid">
-    <figure class="span-7"><figcaption>maze-patterns/rd/reaction_diffusion.html · <span id="rd-fk"></span></figcaption>
-      <div class="cells rd-cells"><canvas id="rd" class="rd" tabindex="0" aria-label="reaction diffusion, arrows change it, space pauses, r resets"></canvas></div>
+    <figure class="span-7"><figcaption>maze-patterns/rd · <span id="kn-what"></span></figcaption>
+      <div class="cells kn-cells">
+        <canvas id="kn" class="kn" aria-label="a knurling pattern growing, then traced as SVG"></canvas>
+        <svg id="kn-svg" class="kn-svg" viewBox="-0.5 -0.5 160 160" aria-hidden="true"><rect id="kn-box" class="kn-box"></rect></svg>
+      </div>
     </figure>
     <figure class="span-5"><figcaption>WebTUI · stools/tui.css</figcaption>
-      <div class="tui-window tui-shadow rd-panel" data-title="gray-scott">
+      <div class="tui-window tui-shadow kn-panel" data-title="gray-scott">
+        <ol class="kn-stages">
+          <li data-kn="grow">grow</li><li data-kn="box">box</li><li data-kn="sharp">sharp</li><li data-kn="svg">svg</li>
+        </ol>
         <table class="tui-ls"><tbody>
-          <tr><td>F feed</td><td id="rd-F">0.035</td><td class="rd-nudge"><button is-="button" size-="small" variant-="background2" data-rd="F-">−</button><button is-="button" size-="small" variant-="background2" data-rd="F+">+</button></td></tr>
-          <tr><td>k kill</td><td id="rd-k">0.065</td><td class="rd-nudge"><button is-="button" size-="small" variant-="background2" data-rd="k-">−</button><button is-="button" size-="small" variant-="background2" data-rd="k+">+</button></td></tr>
+          <tr><td>seed</td><td id="kn-seed"></td></tr>
+          <tr><td>F · k</td><td id="kn-fk"></td></tr>
         </tbody></table>
-        <p class="row"><button is-="button" size-="small" variant-="accent" data-rd="pause" id="rd-pause">pause</button><button is-="button" size-="small" variant-="background2" data-rd="reset">reset</button></p>
+        <p class="row"><a is-="button" size-="small" variant-="background2" id="kn-save" href="#s11">save this svg</a></p>
       </div>
       <div class="tui-window" data-title="ls rd/">
         <table class="tui-ls"><tbody>
-          <tr><td>reaction_diffusion.html</td><td>4.2K</td></tr>
+          <tr><td>sharp_maze_generator.py</td><td>9.3K</td></tr>
+          <tr><td>sharp_maze_svg.py</td><td>5.7K</td></tr>
           <tr><td><a href="samples/maze.svg">sharp_maze_c5_d4_s25.svg</a></td><td>5.8K</td></tr>
-          <tr><td>sharp_maze_c6_d5_s45.svg</td><td>395</td></tr>
-          <tr><td>sharp_maze_c8_d7_s35.svg</td><td>395</td></tr>
         </tbody></table>
       </div>
     </figure>
   </div>
 </section>
-
 <section class="step" id="s12">
   <div class="head"><span class="num">12</span><div>
     <p class="tui-cmd">python3 main.py</p>

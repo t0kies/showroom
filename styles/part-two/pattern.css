@@ -1,12 +1,21 @@
-/* showroom: 11 and 12: the reaction-diffusion canvas, the splash cat and the CRT heading. TK · xoxn · 2026 */
-.rd, .splash { display: block; width: 100%; image-rendering: pixelated; cursor: pointer; }
-.rd-cells { padding: 0; border: 2px solid var(--xn-border); }
-.rd-panel { display: grid; gap: 1lh; padding: 1lh 2ch; }
-.rd-nudge { display: flex; gap: 1ch; justify-content: flex-end; }
-.rd-note { margin: 0.5lh 0 0; padding: 0 1ch; font-size: var(--text-xs); }
-figure:has(.rd-panel) { gap: 0.5lh; }
-figure:has(.rd-panel) > .tui-window + .tui-window { margin-top: 1lh; }
-.rd:focus-visible, .splash:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }
+/* showroom: 11 and 12: the knurling run, the splash cat and the CRT heading. TK · xoxn · 2026 */
+.kn-cells { position: relative; padding: 0; border: 2px solid var(--xn-border); }
+.kn { display: block; width: 100%; aspect-ratio: 1; image-rendering: pixelated; transition: opacity 1.5s 2s; }
+.kn-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.kn-box { fill: none; stroke: var(--xn-ink); stroke-width: 0.6; stroke-dasharray: 2 1; }
+.kn-svg path { fill: var(--xn-accent); fill-opacity: 0; stroke: var(--xn-ink); stroke-width: 0.35; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.kn-svg[data-stage="svg"] path { stroke-dashoffset: 0; fill-opacity: 1; stroke-opacity: 0; transition: stroke-dashoffset 2.5s ease-in-out, fill-opacity 1s 2.5s, stroke-opacity 1s 3.5s; }
+@media (prefers-reduced-motion: reduce) { .kn, .kn-svg path { transition: none !important; } }
+.kn-cells:has([data-stage="svg"]) .kn { opacity: 0; }
+.kn-panel { display: grid; gap: 1lh; padding: 1lh 2ch; }
+.kn-stages { display: flex; gap: 2ch; margin: 0; padding: 0; list-style: none; }
+.kn-stages li { opacity: 0.5; }
+.kn-stages li[data-on] { opacity: 1; color: var(--xn-accent); }
+.kn-stages li[data-on]::before { content: '> '; }
+figure:has(.kn-panel) { gap: 0.5lh; }
+figure:has(.kn-panel) > .tui-window + .tui-window { margin-top: 1lh; }
+.splash { display: block; width: 100%; image-rendering: pixelated; cursor: pointer; }
+.splash:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }
 .crt-box { display: grid; gap: 2lh; align-content: center; height: 100%; padding: 2lh 3ch; background: var(--xn-bg-lo); cursor: pointer; }
 .crt-box h1 { margin: 0; font-size: var(--cover); line-height: 1; color: var(--xn-accent); }
 .crt-box .tui-window { padding: 1lh 2ch; }
