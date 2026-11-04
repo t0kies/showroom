@@ -23,12 +23,11 @@
 
 /* the life update: the cat beside the limerick, stacked on a phone */
 .post-card { flex-direction: row; }
-.post-card > .photo.cat { flex: 0 0 30%; aspect-ratio: auto; display: grid; place-items: center; border-bottom: 0; border-right: 2px solid var(--line); padding: 2lh 2ch; }
+.post-card > .photo.cat { flex: 0 0 30%; aspect-ratio: auto; display: grid; place-items: center; border-bottom: 0; padding: 2lh 2ch; }
 .post-card .logo { height: 8lh; }
 .limerick { margin: 0; white-space: pre-wrap; font: inherit; color: var(--xn-accent); }
 @media (max-width: 40rem) {
   .post-card { flex-direction: column; }
-  .post-card > .photo.cat { border-right: 0; border-bottom: 2px solid var(--line); }
 }
 
 /* the back cover sits closer to the last headline */

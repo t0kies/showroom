@@ -3,9 +3,7 @@
   /* ── effects ──────────────────────────────────────────────── */
 
   .dither {
-    --dither-ink: color-mix(in oklab, var(--foreground0) 8%, transparent);
-    background-image: repeating-conic-gradient(var(--dither-ink) 0% 25%, transparent 0% 50%);
-    background-size: 6px 6px;
+    background: var(--xn-dither);
     image-rendering: pixelated;
   }
   [data-effects='false'] .dither {
@@ -145,7 +143,6 @@
     font-size: clamp(2.5rem, 7vw, 5rem);
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.02em;
   }
   .hero-display h1::before {
     content: none !important;

@@ -1,6 +1,6 @@
 /* ooo/frontend/styles/base/roles.css, inside @scope (.ooo) */
 @scope (.ooo) {
-/* Color roles, mixed from the active theme (themes/<name>.css). No other
+/* Color roles, mixed from the active skin (xoxn/skin/<name>.css, read as --c-*). No other
    stylesheet names a color.
 
    A theme sets --c-glass, --c-ink, --c-shadow, --c-r, --c-g, --c-b and the
@@ -113,7 +113,6 @@ button {
     color: inherit;
     font: inherit;
     text-shadow: inherit;
-    text-transform: uppercase;
 }
 /* hover inverts the cell; keyboard focus and pressing light it in B */
 button:hover:not(:disabled) {
@@ -220,7 +219,6 @@ body:not([data-frame="home"]) .bottombar {
 }
 .screen-title {
     color: var(--heading);
-    text-transform: uppercase;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -340,7 +338,6 @@ button:is(:hover, :focus-visible, :active) .setting-value {
     grid-template-columns: 1fr auto 1fr;
     column-gap: calc(var(--cw) * 2);
     font-variant-numeric: tabular-nums;
-    text-transform: uppercase;
     white-space: pre;
 }
 .game-hud-score {
@@ -493,7 +490,6 @@ button:is(:hover, :focus-visible, :active) .setting-value {
 }
 .field-label {
     color: var(--heading);
-    text-transform: uppercase;
 }
 .field-box {
     position: relative;
@@ -674,7 +670,6 @@ button:is(:hover, :focus-visible, :active) .setting-value {
 }
 .game-board-head {
     color: var(--heading);
-    text-transform: uppercase;
 }
 .game-board-cell {
     overflow: hidden;

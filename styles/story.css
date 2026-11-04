@@ -1,12 +1,12 @@
 /* showroom: a section's head, and the text-cell glass ooo and luna draw on. TK · xoxn · 2026 */
-.step { margin-top: 4lh; padding-top: 1.5lh; border-top: 2px solid var(--line); scroll-margin-top: 1lh; }
+.step { margin-top: 4lh; padding-top: 1.5lh; scroll-margin-top: 1lh; }
 .head { display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: 0 3ch; margin-bottom: 2lh; }
 .head .num { font-size: var(--big); line-height: 1; color: var(--action); }
 .head h2 { margin: 0.25lh 0 0.5lh; font-size: var(--head); }
 @media (max-width: 40rem) {
   .head { grid-template-columns: minmax(0, 1fr); }
 }
-.pull { margin: 2lh 0 0; padding: 1lh 0 1lh calc((100% + 3ch) * 5 / 12); border-bottom: 2px solid var(--line); font-size: var(--big); line-height: 1.2; color: var(--action); }
+.pull { margin: 2lh 0 0; padding: 1lh 0 1lh calc((100% + 3ch) * 5 / 12); font-size: var(--big); line-height: 1.2; color: var(--action); }
 @media (max-width: 64rem) {
   .pull { padding-left: 0; }
 }

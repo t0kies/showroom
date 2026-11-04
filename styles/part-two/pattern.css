@@ -9,7 +9,7 @@
 .kn-cells:has([data-stage="svg"]) .kn { opacity: 0; }
 .kn-panel { display: grid; gap: 1lh; padding: 1lh 2ch; }
 .kn-stages { display: flex; gap: 2ch; margin: 0; padding: 0; list-style: none; }
-.kn-stages li { opacity: 0.5; }
+.kn-stages li { color: var(--xn-fg); }
 .kn-stages li[data-on] { opacity: 1; color: var(--xn-accent); }
 .kn-stages li[data-on]::before { content: '> '; }
 figure:has(.kn-panel) { gap: 0.5lh; }

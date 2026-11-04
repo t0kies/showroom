@@ -4,7 +4,7 @@
 .item > .cells { flex: 1; align-content: center; }
 .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 1ch; }
 .full { display: block; cursor: zoom-in; }
-.screens img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.screens img { display: block; width: 100%; height: auto; }
 .pcb { place-items: center; }
 .pcb img { width: 100%; height: auto; max-height: 22lh; object-fit: contain; }
 
@@ -13,12 +13,12 @@
   display: grid; gap: 1lh; justify-items: center; width: min(100%, 28ch); margin: 0 auto; padding: 1.5lh 2ch; background: var(--p-bg); color: var(--p-text); border: 3px solid var(--p-text); border-radius: 18px; font-family: "Departure Mono", monospace; }
 .phone[data-mode="dark"] { --p-bg: #050608; --p-text: #7cffb2; --p-dim: #1e6b45; --p-card: #0b0e11; --p-glow: rgb(76 242 153 / 0.25); }
 .phone-tabs { display: flex; width: 100%; border: 2px solid var(--p-text); }
-.phone-tabs button { all: unset; flex: 1; padding: 0.25lh 0; text-align: center; cursor: pointer; text-transform: uppercase; }
+.phone-tabs button { all: unset; flex: 1; padding: 0.25lh 0; text-align: center; cursor: pointer; }
 .phone-tabs button[aria-pressed="true"] { background: var(--p-text); color: var(--p-bg); }
 .phone-count { margin: 0; letter-spacing: 4px; text-shadow: 0 0 6px var(--p-glow); }
 .phone-drum { display: grid; justify-items: center; padding: 0.5lh 3ch; border: 2px solid var(--p-dim); background: var(--p-card); cursor: ns-resize; touch-action: none; user-select: none; }
 .phone-drum span:nth-child(3) { border-block: 1px solid var(--p-text); }
 .phone-button { all: unset; padding: 2px; border: 3px solid var(--p-text); background: var(--p-bg); box-shadow: 0 0 6px var(--p-glow); cursor: pointer; }
-.phone-button span { display: block; padding: 0.75lh 4ch; border: 2px solid var(--p-dim); background: var(--p-card); text-transform: uppercase; }
+.phone-button span { display: block; padding: 0.75lh 4ch; border: 2px solid var(--p-dim); background: var(--p-card); }
 .phone-button:active span { background: var(--p-dim); }
 .phone-button:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }

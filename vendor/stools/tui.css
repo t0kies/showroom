@@ -338,7 +338,6 @@
         justify-content: center;
         background-color: var(--action);
         color: var(--action-text);
-        text-transform: uppercase;
     }
     .tui-mode[data-mode='insert'] {
         background-color: var(--attention);
